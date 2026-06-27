@@ -6,12 +6,12 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     name="axiompy",
     version="3.0.0",
-    author="RK RIAD & RK STUDIO 585",
-    author_email="rkriad.official@gmail.com",
+    author="rkriad585",
+    author_email="rkriad585@gmail.com",
     description="A powerful Python mathematics engine for computation and education.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/rkstudio585/AxiomPy",
+    url="https://github.com/rkriad585/AxiomPy",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
