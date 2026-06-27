@@ -5,6 +5,10 @@ from .autodiff import AutoDiff
 from .number_theory import NumberTheory
 from .electromagnetism import Electromagnetism
 from .visualization import Visualization
+from .calculus import Calculus
+from .polynomial import Polynomial
+from .optimization import Optimization
+from .signal import Signal
 from .vector import Vector
 from .matrix import Matrix
 from .graph import Graph
@@ -19,9 +23,13 @@ class AxiomPy:
         self._num_theory = NumberTheory()
         self._em = Electromagnetism()
         self._viz = Visualization()
+        self._calc = Calculus()
+        self._opt = Optimization()
+        self._sig = Signal()
         self.Vector = Vector
         self.Matrix = Matrix
         self.Graph = Graph
+        self.Polynomial = Polynomial
 
     @property
     def linalg(self):
@@ -50,6 +58,18 @@ class AxiomPy:
     @property
     def viz(self):
         return self._viz
+
+    @property
+    def calc(self):
+        return self._calc
+
+    @property
+    def optimization(self):
+        return self._opt
+
+    @property
+    def signal(self):
+        return self._sig
 
 
 Axiom = AxiomPy()

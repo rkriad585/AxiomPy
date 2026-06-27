@@ -119,7 +119,17 @@ f.backward()
 x.grad  # df/dx = 2 * 1.5 * cos(1.5²)
 ```
 
-Available functions: `sin`, `exp`, `log`.
+Available functions: `sin`, `exp`, `log`, `tanh`, `sigmoid`, `sqrt`.
+
+Optimization helper:
+
+```python
+from axiompy import Axiom
+
+f = lambda x: x ** 2 + 2 * x + 1
+minimum = Axiom.autodiff.gradient_descent(f, start=5.0, lr=0.1, steps=100)
+# -1.0
+```
 
 ## Electromagnetism
 
@@ -179,6 +189,86 @@ def dipole(p):
     return E1.to_list()
 
 # Axiom.viz.plot_field_ascii(dipole, center=(0, 0, 0), size=4)
+```
+
+## Calculus
+
+```python
+from axiompy import Axiom
+from axiompy.calculus import Calculus
+
+f = lambda x: x ** 2
+
+# Derivative at a point (central difference)
+Calculus.numerical_derivative(f, 3.0)   # 6.0
+
+# Integration
+Calculus.integrate_trapezoid(f, 0, 1)    # ≈ 1/3
+Calculus.integrate_simpson(f, 0, 1)      # ≈ 1/3
+Calculus.integrate_monte_carlo(f, 0, 1)  # ≈ 1/3
+
+# Multivariate numerical gradient
+g = lambda p: p[0]**2 + p[1]**2
+Calculus.gradient(g, [1.0, 2.0])  # [2.0, 4.0]
+```
+
+## Polynomials
+
+```python
+from axiompy.polynomial import Polynomial
+
+p = Polynomial([1, -3, 2])     # 2x² - 3x + 1
+p(2)                           # 3
+p.degree                        # 2
+p.derivative()                  # Polynomial(4x - 3)
+p.integral()                    # indefinite integral
+
+# Roots via companion matrix
+p.roots()                       # [0.5, 1.0]
+
+# Lagrange interpolation
+Polynomial.lagrange_interpolate([0, 1, 2], [0, 1, 4])  # x²
+```
+
+Also accessible as `Axiom.Polynomial`.
+
+## Optimization
+
+```python
+from axiompy import Axiom
+from axiompy.optimization import Optimization
+
+f = lambda x: x ** 2 + 2 * x + 1
+df = lambda x: 2 * x + 2
+d2f = lambda x: 2.0
+
+Optimization.gradient_descent(f, df, start=5.0, lr=0.1, steps=100)  # -1.0
+Optimization.newton_method(f, df, d2f, start=5.0, steps=10)          # -1.0
+
+# Root finding
+Optimization.bisection(lambda x: x**2 - 4, 0, 5)  # 2.0
+```
+
+## Signal Processing
+
+```python
+from axiompy.signal import Signal
+import math
+
+# DFT / FFT
+x = [math.sin(2 * math.pi * 2 * k / 8) for k in range(8)]
+X = Signal.dft(x)             # frequency domain
+recovered = Signal.idft(X)    # back to time domain
+
+# FFT (requires power-of-2 length, falls back to DFT otherwise)
+X2 = Signal.fft(x)
+rec2 = Signal.ifft(X2)
+
+# Convolution
+Signal.convolve([1, 2, 3], [0, 1, 0.5])  # [0.0, 1.0, 2.5, 4.0, 1.5]
+
+# Moving average
+Signal.moving_average([1, 2, 3, 4, 5], window=3)  # [2.0, 3.0, 4.0]
 ```
 
 ## Error handling
