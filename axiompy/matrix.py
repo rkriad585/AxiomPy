@@ -4,6 +4,7 @@ from numbers import Number
 from ._base import MatrixData
 from .vector import Vector
 
+
 class Matrix:
     def __init__(self, data: MatrixData):
         self._data = np.array(data, dtype=float)
@@ -42,6 +43,9 @@ class Matrix:
     def rank(self) -> int:
         return np.linalg.matrix_rank(self._data)
 
+    def norm(self, ord: Any = 'fro') -> float:
+        return float(np.linalg.norm(self._data, ord=ord))
+
     def __add__(self, other):
         return Matrix(self._data + other._data)
 
@@ -65,3 +69,33 @@ class Matrix:
         if not isinstance(other, Matrix):
             return NotImplemented
         return np.array_equal(self._data, other._data)
+
+    def lu_decompose(self) -> Tuple['Matrix', 'Matrix', 'Matrix']:
+        P, L, U = scipy_lu(self._data)
+        return Matrix(P), Matrix(L), Matrix(U)
+
+    def qr_decompose(self) -> Tuple['Matrix', 'Matrix']:
+        Q, R = np.linalg.qr(self._data)
+        return Matrix(Q), Matrix(R)
+
+    def cholesky_decompose(self) -> 'Matrix':
+        return Matrix(np.linalg.cholesky(self._data))
+
+
+def scipy_lu(A):
+    n = A.shape[0]
+    L = np.eye(n)
+    U = A.copy().astype(float)
+    P = np.eye(n)
+    for k in range(n - 1):
+        pivot = np.argmax(np.abs(U[k:, k])) + k
+        if pivot != k:
+            U[[k, pivot]] = U[[pivot, k]]
+            P[[k, pivot]] = P[[pivot, k]]
+            if k > 0:
+                L[[k, pivot], :k] = L[[pivot, k], :k]
+        for i in range(k + 1, n):
+            factor = U[i, k] / U[k, k]
+            L[i, k] = factor
+            U[i, k:] -= factor * U[k, k:]
+    return P, L, U

@@ -94,3 +94,41 @@ class AutoDiff:
             v.grad += (1 / v.value) * out.grad
         out._backward = _backward
         return out
+
+    @staticmethod
+    def tanh(v: 'AutoDiff.Variable'):
+        t = math.tanh(v.value)
+        out = AutoDiff.Variable(t, {v})
+        def _backward():
+            v.grad += (1 - t * t) * out.grad
+        out._backward = _backward
+        return out
+
+    @staticmethod
+    def sigmoid(v: 'AutoDiff.Variable'):
+        s = 1 / (1 + math.exp(-v.value))
+        out = AutoDiff.Variable(s, {v})
+        def _backward():
+            v.grad += s * (1 - s) * out.grad
+        out._backward = _backward
+        return out
+
+    @staticmethod
+    def sqrt(v: 'AutoDiff.Variable'):
+        s = math.sqrt(v.value)
+        out = AutoDiff.Variable(s, {v})
+        def _backward():
+            v.grad += (0.5 / s) * out.grad
+        out._backward = _backward
+        return out
+
+    @staticmethod
+    def gradient_descent(fn, start: float, lr: float = 0.01,
+                         steps: int = 100) -> float:
+        x = AutoDiff.Variable(start)
+        for _ in range(steps):
+            loss = fn(x)
+            loss.backward()
+            x.value -= lr * x.grad
+            x.grad = 0.0
+        return x.value

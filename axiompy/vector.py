@@ -1,6 +1,7 @@
 import numpy as np
 import math
 from numbers import Number
+from typing import Union, List
 from ._base import AxiomError, VectorData
 
 class Vector:
@@ -15,6 +16,12 @@ class Vector:
 
     def __getitem__(self, key):
         return self._data[key]
+
+    def __neg__(self) -> 'Vector':
+        return Vector(-self._data)
+
+    def __abs__(self) -> float:
+        return float(np.linalg.norm(self._data))
 
     def to_list(self) -> VectorData:
         return self._data.tolist()
@@ -49,6 +56,9 @@ class Vector:
     def magnitude(self) -> float:
         return np.linalg.norm(self._data)
 
+    def norm(self, ord: Union[int, float, str] = 2) -> float:
+        return float(np.linalg.norm(self._data, ord=ord))
+
     def normalize(self) -> 'Vector':
         mag = self.magnitude()
         if mag == 0:
@@ -68,3 +78,22 @@ class Vector:
         if len(self) != 3 or len(other) != 3:
             raise AxiomError("Cross product is only defined for 3D vectors.")
         return Vector(np.cross(self._data, other._data))
+
+    def dot(self, other: 'Vector') -> float:
+        return float(np.dot(self._data, other._data))
+
+    def project_onto(self, other: 'Vector') -> 'Vector':
+        denom = other.dot(other)
+        if denom == 0:
+            return Vector(np.zeros_like(self._data))
+        return other * (self.dot(other) / denom)
+
+    @staticmethod
+    def dot_static(a: 'Vector', b: 'Vector') -> float:
+        return float(np.dot(a._data, b._data))
+
+    @staticmethod
+    def cross_static(a: 'Vector', b: 'Vector') -> 'Vector':
+        if len(a) != 3 or len(b) != 3:
+            raise AxiomError("Cross product is only defined for 3D vectors.")
+        return Vector(np.cross(a._data, b._data))

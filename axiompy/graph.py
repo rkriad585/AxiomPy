@@ -1,16 +1,27 @@
+import heapq
 import numpy as np
-from typing import Dict, List, Tuple, Generic
+from typing import Dict, List, Tuple, Generic, Optional, Set
 from collections import defaultdict
 from ._base import GraphNode
 from .matrix import Matrix
 from .vector import Vector
 
-class Graph(Generic[GraphNode]):
-    def __init__(self):
-        self.adj: Dict[GraphNode, List[GraphNode]] = defaultdict(list)
 
-    def add_edge(self, u, v):
+class Graph(Generic[GraphNode]):
+    def __init__(self, directed: bool = True):
+        self.adj: Dict[GraphNode, List[GraphNode]] = defaultdict(list)
+        self.weights: Dict[Tuple[GraphNode, GraphNode], float] = {}
+        self.directed = directed
+
+    def add_edge(self, u, v, weight: float = 1.0):
         self.adj[u].append(v)
+        self.weights[(u, v)] = weight
+        if not self.directed:
+            self.adj[v].append(u)
+            self.weights[(v, u)] = weight
+
+    def neighbors(self, node) -> List[GraphNode]:
+        return self.adj.get(node, [])
 
     def to_adjacency_matrix(self) -> Tuple[Matrix, Dict[GraphNode, int]]:
         nodes = sorted(list(self.adj.keys()))
@@ -22,6 +33,82 @@ class Graph(Generic[GraphNode]):
                 if v in node_map:
                     adj_matrix[node_map[u], node_map[v]] = 1
         return Matrix(adj_matrix), node_map
+
+    def bfs(self, start: GraphNode) -> List[GraphNode]:
+        visited = []
+        queue = [start]
+        seen = {start}
+        while queue:
+            node = queue.pop(0)
+            visited.append(node)
+            for nb in self.adj.get(node, []):
+                if nb not in seen:
+                    seen.add(nb)
+                    queue.append(nb)
+        return visited
+
+    def dfs(self, start: GraphNode) -> List[GraphNode]:
+        visited = []
+        stack = [start]
+        seen = {start}
+        while stack:
+            node = stack.pop()
+            visited.append(node)
+            for nb in self.adj.get(node, []):
+                if nb not in seen:
+                    seen.add(nb)
+                    stack.append(nb)
+        return visited
+
+    def shortest_path(self, source: GraphNode, target: GraphNode) -> Tuple[Optional[List[GraphNode]], float]:
+        if source not in self.adj and source not in self.weights:
+            return None, float('inf')
+        pq = [(0.0, source)]
+        distances: Dict[GraphNode, float] = {source: 0.0}
+        prev: Dict[GraphNode, Optional[GraphNode]] = {source: None}
+        settled = set()
+        while pq:
+            d, node = heapq.heappop(pq)
+            if node in settled:
+                continue
+            settled.add(node)
+            if node == target:
+                path = []
+                while node is not None:
+                    path.append(node)
+                    node = prev[node]
+                return path[::-1], d
+            for nb in self.adj.get(node, []):
+                if nb in settled:
+                    continue
+                nd = d + self.weights.get((node, nb), 1.0)
+                if nd < distances.get(nb, float('inf')):
+                    distances[nb] = nd
+                    prev[nb] = node
+                    heapq.heappush(pq, (nd, nb))
+        return None, float('inf')
+
+    def connected_components(self) -> List[List[GraphNode]]:
+        all_nodes = set(self.adj.keys())
+        for u, neighbors in self.adj.items():
+            all_nodes.update(neighbors)
+        visited: Set[GraphNode] = set()
+        components = []
+        for node in all_nodes:
+            if node not in visited:
+                component = []
+                stack = [node]
+                while stack:
+                    cur = stack.pop()
+                    if cur in visited:
+                        continue
+                    visited.add(cur)
+                    component.append(cur)
+                    for nb in self.adj.get(cur, []):
+                        if nb not in visited:
+                            stack.append(nb)
+                components.append(component)
+        return components
 
 
 class GraphAnalysis:
