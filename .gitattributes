@@ -1,0 +1,31 @@
+# Auto-detect text files
+* text=auto
+
+# Python
+*.py text diff=python
+*.pyw text
+
+# Markdown
+*.md text diff=markdown
+
+# Shell scripts
+*.sh text eol=lf
+*.bash text eol=lf
+
+# PowerShell
+*.ps1 text eol=crlf
+*.psm1 text eol=crlf
+
+# Config
+*.toml text
+*.yml text
+*.yaml text
+*.cfg text
+*.ini text
+
+# Generated / binary
+*.pyc binary
+*.egg binary
+*.whl binary
+dist/ binary
+build/ binary
