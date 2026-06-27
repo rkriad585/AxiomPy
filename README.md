@@ -4,8 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python Versions](https://img.shields.io/pypi/pyversions/axiompy.svg)](https://pypi.org/project/axiompy/)
 
-**Author:** RK RIAD & RK STUDIO 585  
-**GitHub:** [rkstudio585](https://github.com/rkstudio585)
+**Author:** RK Riad Khan (rkriad585)  
+**GitHub:** [rkriad585](https://github.com/rkriad585)
 
 ---
 
