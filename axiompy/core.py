@@ -4,7 +4,7 @@
 #
 #   AxiomPy: The Python Mathematics & Computation Engine
 #
-#   Version: 2.9.1 (Bugfix Release)
+#   Version: 3.0.0
 #   Author: Master Python Developer & Mathematics Expert
 #
 #   Behavior: Building a universe of complex mathematical operations from
@@ -20,11 +20,12 @@
 
 import numpy as np
 import math
-import random
 # --- FIX: `Generic` must be imported from `typing` ---
-from typing import (List, Tuple, Callable, Any, TypeVar, Dict, Generic)
+from typing import (List, Tuple, Any, TypeVar, Dict, Generic)
 from numbers import Number
 from collections import defaultdict
+from functools import reduce
+from collections import namedtuple
 
 # --- Type Aliases & Core Infrastructure ---
 MatrixData = List[List[float]]
@@ -51,7 +52,9 @@ class Vector:
     def __matmul__(self, other): return NotImplemented
     def __rmul__(self, other: Number) -> 'Vector': return self.__mul__(other)
     def __truediv__(self, other: Number) -> 'Vector': return Vector(self._data / other)
-    def __eq__(self, other: 'Vector') -> bool: return np.array_equal(self._data, other._data)
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Vector): return NotImplemented
+        return np.array_equal(self._data, other._data)
     
     # --- Methods ---
     def magnitude(self) -> float: return np.linalg.norm(self._data)
@@ -105,7 +108,9 @@ class Matrix:
         return NotImplemented
     def __pow__(self, power: int) -> 'Matrix':
         return Matrix(np.linalg.matrix_power(self._data, power))
-    def __eq__(self, other: 'Matrix') -> bool: return np.array_equal(self._data, other._data)
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Matrix): return NotImplemented
+        return np.array_equal(self._data, other._data)
 
 # --- Scientific and Mathematical Domain Classes ---
 
@@ -152,7 +157,7 @@ class GraphAnalysis:
         for node_idx in dangling_nodes:
              M_matrix._data[node_idx, :] = 1/n
 
-        M_hat = np.divide(M_matrix._data, M_matrix._data.sum(axis=1, keepdims=True), where=M_matrix._data.sum(axis=1, keepdims=True)!=0)
+        M_hat = np.divide(M_matrix._data, M_matrix._data.sum(axis=1, keepdims=True), out=np.zeros_like(M_matrix._data), where=M_matrix._data.sum(axis=1, keepdims=True)!=0)
         
         teleport = np.full((n,n), 1/n)
         M = damping * M_hat.T + (1 - damping) * teleport
@@ -166,16 +171,12 @@ class GraphAnalysis:
         inv_node_map = {i: node for node, i in node_map.items()}
         return {inv_node_map[i]: rank for i, rank in enumerate(ranks.to_list())}
 
-# --- Primary Facade Class ---
-from functools import reduce
-from collections import namedtuple
-
 class AutoDiff:
     """Dynamic computation graph and reverse-mode automatic differentiation."""
     class Variable:
-        def __init__(self, value: float, _children: set = set(), _op: str = ''):
+        def __init__(self, value: float, _children: set = None, _op: str = ''):
             self.value = value; self.grad = 0.0
-            self._backward = lambda: None; self._prev = _children
+            self._backward = lambda: None; self._prev = _children if _children is not None else set()
         def __repr__(self): return f"Variable(value={self.value:.4f}, grad={self.grad:.4f})"
         def __add__(self, other):
             other = other if isinstance(other, AutoDiff.Variable) else AutoDiff.Variable(other)
@@ -256,7 +257,7 @@ class Electromagnetism:
             r_mag_sq = np.sum(r_vec**2)
             if r_mag_sq < 1e-18: continue
             E_total += (Electromagnetism.K_E * charge.q / r_mag_sq**1.5) * r_vec
-        return E_total.tolist()
+        return Vector(E_total.tolist())
         
 class Visualization:
     @staticmethod
@@ -352,7 +353,7 @@ def demo_pagerank():
     
 if __name__ == "__main__":
     print("=" * 80)
-    print("    AxiomPy Mathematics Engine v2.9.1 - Corrected Demonstration")
+    print("    AxiomPy Mathematics Engine v3.0.0 - Corrected Demonstration")
     print("=" * 80)
     demo_matrix_operations()
     demo_matrix_methods()
