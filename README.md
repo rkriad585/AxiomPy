@@ -4,83 +4,103 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python Versions](https://img.shields.io/pypi/pyversions/axiompy.svg)](https://pypi.org/project/axiompy/)
 
-**Author:** RK Riad Khan (rkriad585)  
-**GitHub:** [rkriad585](https://github.com/rkriad585)
+**Author:** RK Riad Khan ([rkriad585](https://github.com/rkriad585))
 
 ---
 
 ## Overview
 
-**AxiomPy** is a powerful and elegant Python mathematics engine designed for both computation and education. Built from first principles, it provides a vast array of mathematical functionalities, from basic arithmetic to advanced calculus, linear algebra, number theory, and even specialized domains like graph analysis and automatic differentiation.
-
-The core philosophy of AxiomPy is to expose the inner workings of mathematical algorithms. By implementing them from the ground up, it serves not only as a high-performance tool for scientists and developers but also as a valuable educational resource for students and enthusiasts who wish to explore the beauty of mathematics. Its clean, object-oriented design and unified API make complex computations intuitive and straightforward.
+AxiomPy is a Python mathematics engine built from first principles. It provides
+a unified API for linear algebra, graph analysis, number theory, automatic
+differentiation, electromagnetism, statistics, and ASCII visualization — all
+wired through a single `Axiom` singleton.
 
 ## Features
 
-- **First-Principle Implementations:** Understand the core logic behind the algorithms you use.
-- **Comprehensive Functionality:** Covers a wide spectrum of mathematical fields:
-  - Linear Algebra (Vectors, Matrices, Decompositions)
-  - Calculus (Numerical Differentiation & Integration)
-  - Number Theory (Primes, CRT)
-  - Statistics (Mean, Median, Variance)
-  - Graph Theory (PageRank Algorithm)
-  - Automatic Differentiation Engine
-- **Object-Oriented Design:** A clean, organized, and extensible codebase.
-- **Unified API:** A single, easy-to-use `Axiom` class provides access to all features.
-- **Advanced Data Types:** Includes first-class `Vector` and `Matrix` objects with full operator overloading for intuitive operations.
-- **Zero Dependencies (almost):** Relies only on `numpy` for high-performance array operations, with all mathematical logic built from scratch.
-- **ASCII Visualizations:** Plot functions and vector fields directly in your terminal.
+- **First-principle implementations** — algorithms are written from scratch,
+  not wrapped.
+- **Linear algebra** — `Vector` and `Matrix` with full operator overloading,
+  cross product, determinant, inverse, trace, rank, matrix power.
+- **Graph analysis** — directed graphs with PageRank algorithm.
+- **Number theory** — extended GCD, modular inverse, Chinese Remainder Theorem.
+- **Automatic differentiation** — reverse-mode AD engine (backpropagation)
+  with `sin`, `exp`, `log` support.
+- **Electromagnetism** — Coulomb electric field computation.
+- **Statistics** — covariance matrix.
+- **ASCII visualization** — terminal-based line and field plots.
+- **Clean API** — `from axiompy import Axiom` gives access to everything.
 
 ## Installation
-
-You can install AxiomPy directly from PyPI:
 
 ```bash
 pip install axiom-math
 ```
 
-## Usage
+Requirements: Python ≥ 3.9, numpy.
 
-Here’s a quick look at how you can use AxiomPy:
+## Quick start
 
 ```python
 from axiompy import Axiom
 
-# --- 1. Intuitive Linear Algebra ---
+# Linear algebra
 M = Axiom.Matrix([[1, 2], [3, 4]])
 v = Axiom.Vector([5, 6])
+print(M @ v)           # Vector([17.0, 39.0])
+print(M.determinant)   # -2.0
 
-# Perform matrix-vector multiplication
-Mv = M @ v
-print(f"Matrix-vector product: {Mv}")
-
-# Get the determinant
-print(f"Determinant of M: {M.determinant}")
-
-
-# --- 2. Graph Analysis with PageRank ---
+# PageRank
 g = Axiom.Graph()
-g.add_edge('A', 'B'); g.add_edge('A', 'C'); g.add_edge('B', 'C');
-g.add_edge('C', 'A'); g.add_edge('D', 'C');
+g.add_edge("A", "B"); g.add_edge("B", "C"); g.add_edge("C", "A")
+print(Axiom.graph_analysis.pagerank(g))
 
-ranks = Axiom.graph_analysis.pagerank(g)
-print("\nPageRank Scores:")
-for node, rank in ranks.items():
-    print(f"  Node '{node}': {rank:.4f}")
+# Automatic differentiation
+x = Axiom.autodiff.Variable(3.0)
+y = x ** 2 + 2 * x + 1
+y.backward()
+print(x.grad)          # 8.0 (dy/dx)
+```
 
+## Documentation
 
-# --- 3. ASCII Plotting ---
-x_vals = [i * 0.4 for i in range(20)]
-y_vals = [val**2 for val in x_vals]
+Detailed guides are in the [`docs/`](docs/) directory:
 
-print("\nPlotting y = x^2:")
-Axiom.viz.plot_ascii(x_vals, y_vals)
+| Document | Description |
+|---|---|
+| [Overview](docs/overview.md) | Architecture, module layout, public API reference |
+| [Getting Started](docs/getting-started.md) | Installation, first script, running examples |
+| [Usage Guide](docs/usage.md) | Full API reference with code snippets per module |
+| [Contributing](docs/contributing.md) | Development setup, conventions, building |
+
+## Examples
+
+Ready-to-run example scripts are in [`examples/`](examples/):
+
+```bash
+uv run python examples/linear_algebra.py
+uv run python examples/pagerank.py
+uv run python examples/autodiff.py
+uv run python examples/number_theory.py
+uv run python examples/electric_field.py
+uv run python examples/covariance.py
+uv run python examples/ascii_plot.py
+```
+
+## Development
+
+```bash
+git clone https://github.com/rkriad585/AxiomPy.git
+cd AxiomPy
+uv sync
+uv build
 ```
 
 ## Contributing
 
-Contributions are welcome! If you have ideas for new features, improvements, or bug fixes, please open an issue or submit a pull request on our [GitHub repository](https://github.com/rkstudio585/AxiomPy).
+See [`docs/contributing.md`](docs/contributing.md) for guidelines.  Bug
+reports and pull requests are welcome on the
+[GitHub repository](https://github.com/rkriad585/AxiomPy).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT — see [LICENSE](LICENSE).
