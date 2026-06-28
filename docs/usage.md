@@ -1019,6 +1019,30 @@ The ``.zenodo.json`` file contains metadata for Zenodo DOI registration.
 When a GitHub Release is published, Zenodo automatically creates a new DOI
 version (once the Zenodo-GitHub integration is enabled for the repository).
 
+## Benchmarking (Phase 8.4)
+
+Benchmarks compare AxiomPy operations against equivalent numpy/scipy calls.
+
+```bash
+# Run all benchmarks
+uv run pytest benchmarks/ --benchmark-only
+
+# Compare specific groups
+uv run pytest benchmarks/ --benchmark-only --benchmark-group-by=group
+
+# Store results as JSON for historical comparison
+uv run pytest benchmarks/ --benchmark-only --benchmark-json output.json
+```
+
+Benchmark groups:
+- ``vector-creation``, ``vector-dot``, ``vector-norm``, ``vector-add``
+- ``matrix-matmul``, ``matrix-determinant``, ``matrix-inverse``
+- ``poly-eval``, ``poly-roots``
+
+A CI workflow (``.github/workflows/benchmark.yml``) is provided for optional
+on-label runs; it is disabled by default and must be triggered manually via
+the GitHub Actions UI.
+
 ## Running tests
 
 ```bash

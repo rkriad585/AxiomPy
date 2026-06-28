@@ -205,9 +205,9 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 - [x] PyPI download stats badge in README
 
 ### 8.4 Benchmarking
-- [ ] `pytest-benchmark` integration for performance regression testing
-- [ ] `benchmarks/` directory with comparison to numpy/scipy
-- [ ] CI benchmark step (optional, on-label only)
+- [x] `pytest-benchmark` integration for performance regression testing
+- [x] `benchmarks/` directory with comparison to numpy
+- [x] CI benchmark step (``.github/workflows/benchmark.yml``, optional on-label only)
 
 ---
 

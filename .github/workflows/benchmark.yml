@@ -1,0 +1,30 @@
+name: Benchmarks
+
+on:
+  # Uncomment to run benchmarks on every push to main:
+  # push:
+  #   branches: [main]
+  # Run manually via GitHub Actions UI:
+  workflow_dispatch:
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+      - name: Install dependencies
+        run: uv sync --group dev
+      - name: Run benchmarks
+        run: uv run pytest benchmarks/ --benchmark-only --benchmark-json output.json
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: output.json
