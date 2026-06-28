@@ -1,4 +1,6 @@
+from axiompy.matrix import Matrix
 from axiompy.optimization import Optimization
+from axiompy.vector import Vector
 
 
 # f(x) = x^2 + 2x + 1,  f'(x) = 2x + 2
@@ -31,9 +33,9 @@ golden = Optimization.golden_section(lambda x: (x - 2) ** 2, 0, 5)
 print(f"\nGolden section (x-2)^2: min at x = {golden:.6f}  (expected: 2.0)")
 
 # Conjugate gradient for SPD system Ax = b
-A = [[4, 1], [1, 3]]
-b_vec = [1, 2]
-cg = Optimization.conjugate_gradient(A, b_vec, [0, 0])
+A = Matrix([[4, 1], [1, 3]])
+b_vec = Vector([1, 2])
+cg = Optimization.conjugate_gradient(A, b_vec, Vector([0, 0]))
 print(f"Conjugate gradient solve: x = {cg}")
 
 # Nelder-Mead
