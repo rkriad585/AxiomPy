@@ -1,9 +1,14 @@
 import logging
 
 from ._backend import get_backend, register_backend, set_backend
+from ._basic_math import BasicMath, Fraction
+from ._cache import AxiomCache
 from ._config import AxiomConfig
+from ._constants import Constants as AxiomConstants
+from ._io import AxiomIO
 from ._jupyter import MatrixExplorer, PolynomialSliders
 from ._lazy import LazyExpr, _lazy_scope
+from ._magic import AxiomMagic
 from ._mmap import MmapArray, open_mmap
 from ._sparse import SparseMatrix
 from .autodiff import AutoDiff
@@ -95,10 +100,16 @@ class AxiomPy:
         self._calc = Calculus()
         self._opt = Optimization()
         self._sig = Signal()
+        self._math = BasicMath()
+        self._constants = AxiomConstants()
+        self._io = AxiomIO()
+        self._cache = AxiomCache()
+        self._magic = AxiomMagic()
         self.Vector = Vector
         self.Matrix = Matrix
         self.Graph = Graph
         self.Polynomial = Polynomial
+        self.Fraction = Fraction
         self.Tensor = Tensor
         self.ComplexNumber = ComplexNumber
         self.ComplexVector = ComplexVector
@@ -257,6 +268,51 @@ class AxiomPy:
             Signal: Instance of the signal API.
         """
         return self._sig
+
+    @property
+    def math(self):
+        """Access the basic math sub-module.
+
+        Returns:
+            BasicMath: Instance of the basic math API.
+        """
+        return self._math
+
+    @property
+    def constants(self):
+        """Access the built-in constants sub-module.
+
+        Returns:
+            AxiomConstants: Instance of the constants API.
+        """
+        return self._constants
+
+    @property
+    def io(self):
+        """Access the data I/O sub-module.
+
+        Returns:
+            AxiomIO: Instance of the I/O API.
+        """
+        return self._io
+
+    @property
+    def cache(self):
+        """Access the LRU cache sub-module.
+
+        Returns:
+            AxiomCache: Instance of the caching API.
+        """
+        return self._cache
+
+    @property
+    def magic(self):
+        """Access the magical-functions sub-module.
+
+        Returns:
+            AxiomMagic: Instance of the magic API.
+        """
+        return self._magic
 
     @property
     def backend(self):

@@ -211,6 +211,69 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 
 ---
 
+## Phase 9 — Core math & data ecosystem
+
+### 9.1 Basic math operations
+- [x] Arithmetic: addition, subtraction, multiplication, division, integer ops
+- [x] PEMDAS order-of-operations expression evaluator
+- [x] Prime number utilities (is_prime, nth_prime, primes_up_to)
+- [x] Fractions: create, simplify, add, subtract, multiply, divide, compare
+- [x] Decimals: precision-aware decimal wrapper
+- [x] Percentages: convert, apply, difference
+- [x] Linear equations: solve single-variable, system of 2 equations
+- [x] Exponents: power, nth_root
+- [x] Square roots (with rationalized output)
+- [x] Geometry formulas: perimeter, area (square, rectangle, circle, triangle)
+- [x] Pythagorean theorem solver
+- [x] Mean (average), median, mode
+- [x] Basic probability: coin flip, dice roll, combinations, permutations
+- [x] Speed/distance/time formula
+
+### 9.2 Custom data formats & I/O
+- [x] ``.axi`` custom binary/text format for AxiomPy data
+- [x] CSV export/import (no external libs)
+- [x] JSON export/import
+- [x] TXT export (pretty-print)
+- [x] ``Axiom.io`` facade with ``save()`` / ``load()``
+
+### 9.3 Built-in constants
+- [x] Math constants: ``PI``, ``E``, ``PHI``, ``TAU``, ``INF``, ``NAN``
+- [x] Physics constants: ``C`` (light speed), ``G`` (gravitational), ``H`` (Planck), ``KB`` (Boltzmann), ``NA`` (Avogadro), ``EPS0``, ``MU0``, ``G0`` (standard gravity)
+- [x] Accessible via ``Axiom.constants``
+
+### 9.4 Async caching system
+- [x] ``Axiom.cache`` — thread-safe LRU cache decorator
+- [x] Async variants for heavy computations
+- [x] Cache stats (hits, misses, size)
+
+### 9.5 CLI extensions
+- [x] ``axiompy eval "2 + 3 * 4"`` — evaluate math expressions
+- [x] ``axiompy convert 42`` — show number in different formats
+- [x] ``axiompy factors 84`` — prime factorization
+- [x] ``axiompy constants`` — list all built-in constants
+
+### 9.6 "Magical" functions
+- [x] ``Axiom.magic.digit_sum(n)`` — sum of digits
+- [x] ``Axiom.magic.digital_root(n)`` — repeated digit sum
+- [x] ``Axiom.magic.is_palindrome(n)`` — palindrome check
+- [x] ``Axiom.magic.reverse_number(n)`` — reverse digits
+- [x] ``Axiom.magic.collatz(n)`` — Collatz sequence
+- [x] ``Axiom.magic.happy_numbers(limit)`` — happy numbers
+- [x] ``Axiom.magic.armstrong_number(n)`` — Armstrong/narcissistic check
+- [x] ``Axiom.magic.perfect_number(n)`` — perfect number check
+- [x] ``Axiom.magic.friendly_numbers(a, b)`` — friendly pair check
+- [x] ``Axiom.magic.visualize_number(n)`` — ASCII visual of number properties
+
+### 9.7 Documentation
+- [x] New ``docs/basic_math.md`` — beginner-friendly guide
+- [x] New ``docs/data_io.md`` — import/export guide
+- [x] New ``docs/constants.md`` — constants reference
+- [x] New ``docs/magical.md`` — magical functions tour
+- [x] All inline docstrings written for beginner audience
+- [x] ``docs/usage.md`` updated with all new sections
+
+---
+
 ## How to pick what to build
 
 1. **Phase 5 first** — deepen existing modules; users already import them.
