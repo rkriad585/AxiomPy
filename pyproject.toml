@@ -24,6 +24,9 @@ dependencies = [
     "numpy>=1.20.0",
 ]
 
+[project.scripts]
+axiompy = "axiompy.cli:main"
+
 [project.urls]
 Homepage = "https://github.com/rkriad585/AxiomPy"
 Repository = "https://github.com/rkriad585/AxiomPy"

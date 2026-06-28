@@ -193,9 +193,9 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 - [x] Jupyter widget for live parameter exploration (`PolynomialSliders`, `MatrixExplorer`)
 
 ### 8.2 `axiompy` CLI tool
-- [ ] `axiompy shell` — interactive REPL with `Axiom` pre-imported
-- [ ] `axiompy demo` — run through all example scripts
-- [ ] `axiompy info` — print version, backend, config
+- [x] `axiompy shell` — interactive REPL with `Axiom` pre-imported
+- [x] `axiompy demo` — run through all example scripts
+- [x] `axiompy info` — print version, backend, config
 
 ### 8.3 Publication
 - [ ] Tag `v4.0.0` and push

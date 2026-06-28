@@ -879,6 +879,44 @@ Axiom.PolynomialSliders(coeffs=[1.0, 0.0, 0.0], x0=0.0)
 Axiom.MatrixExplorer()
 ```
 
+## CLI Tool (Phase 8.2)
+
+The ``axiompy`` package installs a command-line tool with three subcommands:
+
+```bash
+axiompy shell    # Interactive REPL with Axiom pre-imported as A
+axiompy demo     # Run through all example scripts
+axiompy info     # Print version, backend, config
+```
+
+### ``axiompy shell``
+
+Launches an interactive Python REPL (IPython if installed, otherwise standard
+interactive Python) with the Axiom facade pre-imported as ``A``.
+
+```python
+A.Vector([1, 2, 3]) @ A.Matrix([[1, 0], [0, 1], [0, 0]])
+```
+
+### ``axiompy demo``
+
+Executes every ``.py`` file in the ``examples/`` directory and reports the
+output (or any failures).
+
+### ``axiompy info``
+
+Prints version, Python version, platform, active backend, and current config:
+
+```
+AxiomPy version:    4.0.0
+Python version:     3.14.4
+Platform:           linux
+Active backend:     NumpyBackend
+Config — precision: 6
+Config — dtype:     float64
+Config — verbose:   False
+```
+
 ## Error handling
 
 All custom exceptions inherit from `AxiomError` (defined in `_base.py`):
