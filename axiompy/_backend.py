@@ -279,11 +279,15 @@ class NumpyBackend(Backend):
 
 
 # Import after class definitions to avoid circular imports
+from ._cupy_backend import CuPyBackend  # noqa: E402
+from ._jax_backend import JaxBackend  # noqa: E402
 from ._pure_backend import PurePythonBackend  # noqa: E402
 
 _backends: dict[str, type[Backend]] = {
     "numpy": NumpyBackend,
     "pure": PurePythonBackend,
+    "jax": JaxBackend,
+    "cupy": CuPyBackend,
 }
 
 _current_backend: Backend = NumpyBackend()

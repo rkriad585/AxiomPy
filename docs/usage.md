@@ -756,9 +756,11 @@ from axiompy import Axiom
 
 Axiom.backend  # NumpyBackend instance
 
-# Switch backends ("numpy" and "pure" are registered)
-Axiom.set_backend("pure")        # pure-Python (no numpy dependency)
+# Switch backends
 Axiom.set_backend("numpy")       # NumPy-backed (default)
+Axiom.set_backend("pure")        # pure-Python (no numpy dependency)
+Axiom.set_backend("jax")         # JAX JIT-compiled (requires jax)
+Axiom.set_backend("cupy")        # CUDA-accelerated (requires cupy + GPU)
 ```
 
 Custom backends can be registered:

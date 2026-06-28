@@ -162,9 +162,9 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 - [x] Test suite runs against both backends via parametrized fixture
 
 ### 7.2 JAX / CuPy backend
-- [ ] `JaxBackend` — JIT-compiled via `jax.numpy`
-- [ ] GPU support for large matrix operations
-- [ ] `CuPyBackend` — CUDA-accelerated via `cupy`
+- [x] `JaxBackend` — JIT-compiled via `jax.numpy`
+- [x] GPU support for large matrix operations
+- [x] `CuPyBackend` — CUDA-accelerated via `cupy`
 
 ### 7.3 Lazy evaluation
 - [ ] `__array_function__` protocol where applicable
