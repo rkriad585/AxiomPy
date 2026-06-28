@@ -37,3 +37,6 @@ site/
 
 # Logs
 *.log
+
+# IDE/editor config (tracked upstream but ignored locally)
+AGENTS.md
