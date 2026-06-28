@@ -3,6 +3,7 @@ import logging
 from ._backend import get_backend, register_backend, set_backend
 from ._config import AxiomConfig
 from ._lazy import LazyExpr, _lazy_scope
+from ._mmap import MmapArray, open_mmap
 from ._sparse import SparseMatrix
 from .autodiff import AutoDiff
 from .bayesian import (
@@ -146,6 +147,8 @@ class AxiomPy:
         self.lazy = _lazy_scope
         self.LazyExpr = LazyExpr
         self.SparseMatrix = SparseMatrix
+        self.MmapArray = MmapArray
+        self.open_mmap = open_mmap
         self._setup_logging()
 
     def _setup_logging(self):

@@ -5,6 +5,7 @@ from numbers import Number
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
+    from ._mmap import MmapArray
     from ._sparse import SparseMatrix
 
 import numpy as np
@@ -24,13 +25,14 @@ class Matrix:
     :attr:`determinant`, :attr:`inverse`, :attr:`trace`, and :attr:`rank`.
     """
 
-    def __init__(self, data: MatrixData):
+    def __init__(self, data: MatrixData, dtype=None):
         """Initialize a Matrix from a 2-D list of numbers.
 
         Args:
             data: List of rows, each a list of numeric values.
+            dtype: NumPy dtype (default ``float``).
         """
-        self._data = np.array(data, dtype=float)
+        self._data = np.array(data, dtype=dtype or float)
 
     def __repr__(self) -> str:
         """Return a pretty-printed string representation.
@@ -52,6 +54,22 @@ class Matrix:
             MatrixData: Nested list of floats.
         """
         return self._data.tolist()
+
+    @property
+    def dtype(self):
+        """NumPy dtype of the underlying array."""
+        return self._data.dtype
+
+    def astype(self, dtype):
+        """Return a copy cast to a different dtype.
+
+        Args:
+            dtype: NumPy dtype or equivalent string (e.g. ``'float32'``).
+
+        Returns:
+            Matrix: New matrix with the requested dtype.
+        """
+        return Matrix(self._data.astype(dtype), dtype=dtype)
 
     @property
     def shape(self) -> tuple[int, int]:
@@ -293,6 +311,19 @@ class Matrix:
         from ._sparse import SparseMatrix
 
         return SparseMatrix.from_dense(self, tol=tol)
+
+    @classmethod
+    def from_mmap(cls, mmap: MmapArray) -> Matrix:
+        """Load a :class:`Matrix` from a memory-mapped array.
+
+        Args:
+            mmap: An open ``MmapArray`` instance.
+
+        Returns:
+            Matrix: Dense matrix loaded into memory.
+        """
+        mmap.open()
+        return cls(mmap._mmap.copy())
 
 
 def scipy_lu(A):

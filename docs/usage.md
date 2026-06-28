@@ -782,6 +782,57 @@ sp2 = Axiom.SparseMatrix(
 )
 ```
 
+## Out-of-Core & Dtype (Phase 7.5)
+
+### Memory-mapped arrays (out-of-core)
+
+```python
+from axiompy import Axiom
+import numpy as np
+
+# Create a zero-initialized memory-mapped array
+mm = Axiom.MmapArray.zeros((10000, 500), path="/tmp/large.mmap")
+mm.open()
+mm[0, 0] = 42.0
+
+# Chunked matrix-vector product (never loads full array into RAM)
+v = Axiom.Vector(np.ones(500))
+result = mm.matmul(v)
+
+# Chunked in-place arithmetic
+mm.add(5.0)
+mm.mul(2.0)
+
+# Convert to dense Matrix (loads into RAM — use with care)
+M = Axiom.Matrix.from_mmap(mm)
+
+# Context manager pattern
+with Axiom.MmapArray.zeros((3, 3), path="/tmp/ctx.mmap") as m:
+    m[0, :] = [1, 2, 3]
+    result = m.matmul(Axiom.Vector([1, 2, 3]))
+
+# From existing numpy array
+arr = np.array([[1.0, 2.0], [3.0, 4.0]])
+mm2 = Axiom.MmapArray.from_array(arr, path="/tmp/from_arr.mmap")
+```
+
+### Numerical dtype support
+
+```python
+v = Axiom.Vector([1.5, 2.5, 3.5])
+v.dtype              # dtype('float64')
+
+v32 = v.astype("float32")
+v32.dtype            # dtype('float32')
+
+vi = v.astype("int32")
+vi.to_list()         # [1, 2, 3]
+
+M = Axiom.Matrix([[1, 2], [3, 4]])
+M.dtype              # dtype('float64')
+M.astype("float32")
+```
+
 ## Error handling
 
 All custom exceptions inherit from `AxiomError` (defined in `_base.py`):

@@ -174,7 +174,14 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 ### 7.4 Memory optimization
 - [x] `Matrix.to_sparse()` — convert to COO/CSR format
 - [x] `SparseMatrix` — lightweight sparse matrix class in COO/CSR
-- [ ] Out-of-core operations for large arrays (memory-mapped numpy)
+
+### 7.5 Out-of-core & numerical precision
+- [x] `MmapArray` — memory-mapped array with chunked ops
+- [x] `open_mmap()` / `MmapArray.from_array()` / `MmapArray.zeros()`
+- [x] Chunked `matmul`, `add`, `mul` for out-of-core workloads
+- [x] `Matrix.from_mmap()` — load mmap into dense Matrix
+- [x] `Vector.dtype` / `Matrix.dtype` property
+- [x] `Vector.astype(dtype)` / `Matrix.astype(dtype)` — dtype conversion
 
 ---
 

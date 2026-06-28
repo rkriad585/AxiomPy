@@ -17,13 +17,14 @@ class Vector:
     Supports basic arithmetic, dot/cross products, norms, and projections.
     """
 
-    def __init__(self, data: VectorData):
+    def __init__(self, data: VectorData, dtype=None):
         """Initialize a Vector from a list of numbers.
 
         Args:
             data: List of numeric coordinates.
+            dtype: NumPy dtype (default ``float``).
         """
-        self._data = np.array(data, dtype=float)
+        self._data = np.array(data, dtype=dtype or float)
 
     def __len__(self) -> int:
         """Return the number of elements.
@@ -53,6 +54,22 @@ class Vector:
             float or np.ndarray: The element(s) at the given key.
         """
         return self._data[key]
+
+    @property
+    def dtype(self):
+        """NumPy dtype of the underlying array."""
+        return self._data.dtype
+
+    def astype(self, dtype):
+        """Return a copy cast to a different dtype.
+
+        Args:
+            dtype: NumPy dtype or equivalent string (e.g. ``'float32'``).
+
+        Returns:
+            Vector: New vector with the requested dtype.
+        """
+        return Vector(self._data.astype(dtype), dtype=dtype)
 
     def __neg__(self) -> 'Vector':
         """Negate all elements.
