@@ -102,11 +102,12 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 - [x] `fft` → `cfft` alias
 
 ### 6.2 Tensors (`tensor.py`)
-- [ ] `Tensor` class — n-dimensional array wrapper
-- [ ] Indexing, slicing, broadcasting
-- [ ] `contract(a, b, axes)` — tensor contraction (generalized dot)
-- [ ] `outer(a, b)` — outer product
-- [ ] `kronecker(a, b)` — Kronecker product
+- [x] `Tensor` class — n-dimensional array wrapper
+- [x] Indexing, slicing, broadcasting
+- [x] `contract(a, b, axes)` — tensor contraction (generalized dot)
+- [x] `outer(a, b)` — outer product
+- [x] `kronecker(a, b)` — Kronecker product
+- [x] `einsum(subscript, *operands)` — Einstein summation
 
 ### 6.3 Special functions (`special.py`)
 - [ ] `gamma(z)` — Lanczos approximation

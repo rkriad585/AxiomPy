@@ -14,6 +14,7 @@ from .optimization import Optimization
 from .polynomial import Polynomial
 from .signal import Signal
 from .stats import Statistics
+from .tensor import Tensor
 from .vector import Vector
 from .visualization import Visualization
 
@@ -45,6 +46,7 @@ class AxiomPy:
         self.Matrix = Matrix
         self.Graph = Graph
         self.Polynomial = Polynomial
+        self.Tensor = Tensor
         self.ComplexNumber = ComplexNumber
         self.ComplexVector = ComplexVector
         self.ComplexMatrix = ComplexMatrix

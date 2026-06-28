@@ -495,6 +495,47 @@ Signal.upsample(x, factor=2)
 Signal.spectrogram(x, window_size=64, hop_size=32)
 ```
 
+## Tensors (Phase 6.2)
+
+```python
+from axiompy import Axiom
+
+# Create tensors
+t = Axiom.Tensor([[1, 2, 3], [4, 5, 6]])
+t.shape   # (2, 3)
+t.ndim    # 2
+t.size    # 6
+
+# Arithmetic (broadcasting supported)
+t + 10
+t * Axiom.Tensor([1, 2, 3])
+
+# Factory methods
+Axiom.Tensor.zeros(2, 3)
+Axiom.Tensor.ones(4)
+Axiom.Tensor.eye(3)
+Axiom.Tensor.linspace(0, 1, 5)
+Axiom.Tensor.arange(0, 10, 2)
+
+# Reductions
+t.sum()   # scalar Tensor
+t.mean()
+t.max()
+t.min()
+t.std()
+
+# Tensor operations
+Axiom.Tensor.contract(a, b, axes=1)      # matmul via contraction
+Axiom.Tensor.outer(a, b)                 # outer product
+Axiom.Tensor.kronecker(a, b)             # Kronecker product
+Axiom.Tensor.einsum("ij,jk->ik", a, b)   # Einstein summation
+
+# Reshape / transpose
+t.reshape(3, 2)
+t.flatten()
+t.T
+```
+
 ## Complex Numbers (Phase 6.1)
 
 ```python
