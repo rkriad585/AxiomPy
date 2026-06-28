@@ -47,6 +47,39 @@ class Matrix:
         table = [fmt.format(*row) for row in s]
         return "Matrix(\n  " + "\n  ".join(table) + "\n)"
 
+    def to_latex(self) -> str:
+        """Return a LaTeX matrix string.
+
+        Returns:
+            str: ``\\begin{pmatrix} ... \\end{pmatrix}``.
+        """
+        prec = AxiomConfig.load().precision
+        rows = []
+        for row in self._data:
+            entries = " & ".join(str(round(float(x), prec)) for x in row)
+            rows.append(entries)
+        return "\\begin{pmatrix}" + "\\\\".join(rows) + "\\end{pmatrix}"
+
+    def _repr_latex_(self) -> str:
+        """LaTeX representation for Jupyter notebooks."""
+        return f"$${self.to_latex()}$$"
+
+    def _repr_html_(self) -> str:
+        """HTML representation for Jupyter notebooks."""
+        prec = AxiomConfig.load().precision
+        rows_html = []
+        for row in self._data:
+            cells = "".join(
+                f"<td style='text-align:center;padding:2px 8px'>{round(float(x), prec)}</td>"
+                for x in row
+            )
+            rows_html.append(f"<tr>{cells}</tr>")
+        return (
+            "<table style='display:inline-block;border-collapse:collapse;'>"
+            + "".join(rows_html)
+            + "</table>"
+        )
+
     def to_list(self) -> MatrixData:
         """Convert the matrix to a plain Python list of lists.
 

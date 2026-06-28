@@ -1,7 +1,9 @@
 import math
+
 import pytest
+
 from axiompy import Axiom
-from axiompy.geometry import Point, Line, Plane, Sphere
+from axiompy.geometry import Line, Plane, Point, Sphere
 
 
 class TestPoint:

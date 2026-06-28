@@ -44,6 +44,43 @@ class Polynomial:
                 terms.append(f"{c}x^{i}" if c != 1 else f"x^{i}")
         return "Polynomial(" + " + ".join(reversed(terms)) + ")" if terms else "Polynomial(0)"
 
+    def to_latex(self) -> str:
+        """Return a LaTeX polynomial string.
+
+        Returns:
+            str: e.g. ``x^{2} + 2x + 1``.
+        """
+        terms = []
+        for i, c in enumerate(self.coeffs):
+            if c == 0:
+                continue
+            if i == 0:
+                terms.append(f"{c}")
+            elif i == 1:
+                terms.append(f"{c}x" if c != 1 else "x")
+            else:
+                terms.append(f"{c}x^{{{i}}}" if c != 1 else f"x^{{{i}}}")
+        return " + ".join(reversed(terms)) if terms else "0"
+
+    def _repr_latex_(self) -> str:
+        """LaTeX representation for Jupyter notebooks."""
+        return f"$${self.to_latex()}$$"
+
+    def _repr_html_(self) -> str:
+        """HTML representation for Jupyter notebooks."""
+        terms = []
+        for i, c in enumerate(self.coeffs):
+            if c == 0:
+                continue
+            if i == 0:
+                terms.append(f"<span>{c}</span>")
+            elif i == 1:
+                terms.append(f"<span>{c}x</span>" if c != 1 else "<span>x</span>")
+            else:
+                terms.append(f"<span>{c}x<sup>{i}</sup></span>" if c != 1 else f"<span>x<sup>{i}</sup></span>")
+        expr = " + ".join(reversed(terms)) if terms else "0"
+        return f"<div style='font-style:italic;'>{expr}</div>"
+
     def __call__(self, x: float) -> float:
         """Evaluate the polynomial at a given value of x.
 

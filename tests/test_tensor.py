@@ -1,4 +1,3 @@
-import pytest
 from axiompy import Axiom
 from axiompy.tensor import Tensor
 

@@ -1,7 +1,9 @@
 import math
+
 import pytest
+
 from axiompy import Axiom
-from axiompy.odes import pendulum_odes, lotka_volterra_odes
+from axiompy.odes import lotka_volterra_odes, pendulum_odes
 
 
 class TestSolveIVP:

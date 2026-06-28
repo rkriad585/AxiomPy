@@ -1,4 +1,5 @@
 import pytest
+
 from axiompy import Axiom
 from axiompy._base import AxiomError
 

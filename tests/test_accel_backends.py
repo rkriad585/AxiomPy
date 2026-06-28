@@ -3,14 +3,12 @@
 These backends require optional dependencies (jax / cupy) so tests
 are skipped if the library is not installed.
 """
-import math
 
 import pytest
 
-from axiompy._backend import get_backend, set_backend, register_backend, Backend
-from axiompy._jax_backend import _HAS_JAX, JaxBackend
+from axiompy._backend import get_backend, set_backend
 from axiompy._cupy_backend import _HAS_CUPY, CuPyBackend
-
+from axiompy._jax_backend import _HAS_JAX, JaxBackend
 
 # ---- JAX backend tests -----------------------------------------------------
 

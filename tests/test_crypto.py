@@ -1,15 +1,14 @@
 """Tests for axiompy.crypto."""
-import pytest
 from axiompy.crypto import (
-    rsa_keygen,
-    rsa_encrypt,
-    rsa_decrypt,
-    elgamal_keygen,
-    elgamal_encrypt,
-    elgamal_decrypt,
-    diffie_hellman_key_exchange,
-    sha256,
     _is_prime,
+    diffie_hellman_key_exchange,
+    elgamal_decrypt,
+    elgamal_encrypt,
+    elgamal_keygen,
+    rsa_decrypt,
+    rsa_encrypt,
+    rsa_keygen,
+    sha256,
 )
 
 

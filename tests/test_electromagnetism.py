@@ -1,5 +1,5 @@
-import math
 import pytest
+
 from axiompy import Axiom
 from axiompy.electromagnetism import Electromagnetism
 
@@ -9,7 +9,7 @@ class TestElectromagnetism:
         charge = Electromagnetism.Charge(1e-9, (0, 0, 0))
         V = Electromagnetism.electric_potential([charge], (1, 0, 0))
         expected = Electromagnetism.K_E * 1e-9 / 1.0
-        assert V == pytest.approx(expected, rel=1e-6)
+        assert pytest.approx(expected, rel=1e-6) == V
 
     def test_electric_potential_dipole(self):
         charges = [

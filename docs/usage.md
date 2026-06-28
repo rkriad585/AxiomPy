@@ -833,6 +833,52 @@ M.dtype              # dtype('float64')
 M.astype("float32")
 ```
 
+## Jupyter Integration (Phase 8.1)
+
+### Rich display in notebooks
+
+`Vector`, `Matrix`, `Polynomial`, and `SparseMatrix` automatically render
+as formatted HTML or LaTeX when displayed in a Jupyter notebook cell:
+
+```python
+from axiompy import Axiom
+
+v = Axiom.Vector([1.5, 2.0, 3.0])
+v  # rendered as \begin{pmatrix} 1.5 & 2 & 3 \end{pmatrix}
+
+m = Axiom.Matrix([[1, 2], [3, 4]])
+m  # rendered as a 2x2 pmatrix
+
+p = Axiom.Polynomial([1, -2, 3])
+p  # rendered as 3x^2 - 2x + 1
+```
+
+You can also get LaTeX strings explicitly:
+
+```python
+v.to_latex()   # "\\begin{pmatrix}1.5 & 2 & 3\\end{pmatrix}"
+m.to_latex()   # "\\begin{pmatrix}1 & 2\\\\3 & 4\\end{pmatrix}"
+p.to_latex()   # "3x^{2} - 2x + 1"
+```
+
+### Interactive widgets (requires ``ipywidgets``)
+
+Explore polynomials or matrices live with sliders.  Install the extra:
+
+```bash
+pip install ipywidgets
+```
+
+```python
+from axiompy import Axiom
+
+# Adjust polynomial coefficients with sliders, see value at x
+Axiom.PolynomialSliders(coeffs=[1.0, 0.0, 0.0], x0=0.0)
+
+# Explore a 2x2 matrix — determinant, trace, eigenvalues update live
+Axiom.MatrixExplorer()
+```
+
 ## Error handling
 
 All custom exceptions inherit from `AxiomError` (defined in `_base.py`):

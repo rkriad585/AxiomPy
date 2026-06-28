@@ -203,6 +203,18 @@ class SparseMatrix:
             f"density={self.density:.4g})"
         )
 
+    def to_latex(self) -> str:
+        """Return a LaTeX matrix string of the dense form."""
+        return self.to_dense().to_latex()
+
+    def _repr_latex_(self) -> str:
+        """LaTeX representation for Jupyter notebooks."""
+        return f"$${self.to_latex()}$$"
+
+    def _repr_html_(self) -> str:
+        """HTML representation for Jupyter notebooks."""
+        return self.to_dense()._repr_html_()
+
     # ---- internal helpers ----
 
     def _add_scalar(self, scalar: Number) -> SparseMatrix:

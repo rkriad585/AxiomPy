@@ -49,5 +49,6 @@ result7 = expr7.compute()
 print(f"\n(v * 10 + 5).compute() = {result7}")
 
 # Using Axiom.lazy.compute() directly
-result8 = Axiom.lazy.compute(Axiom.lazy.lazy(A) @ Axiom.lazy.lazy(v))
-print(f"\nAxiom.lazy.compute(A @ v) = {result8}  (expected: {A @ v})")
+v2 = Axiom.Vector([1, 2])
+result8 = Axiom.lazy.compute(Axiom.lazy.lazy(A) @ Axiom.lazy.lazy(v2))
+print(f"\nAxiom.lazy.compute(A @ v2) = {result8}  (expected: {A @ v2})")

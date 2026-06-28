@@ -1,10 +1,8 @@
 """Tests for axiompy._lazy — deferred computation graphs."""
-import math
 
-import pytest
 
 from axiompy import Axiom
-from axiompy._lazy import LazyExpr, LazyScope
+from axiompy._lazy import LazyExpr
 
 
 class TestLazyExpr:

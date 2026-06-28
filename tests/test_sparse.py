@@ -1,13 +1,12 @@
 """Tests for the sparse matrix module."""
 
-import pytest
 import numpy as np
+import pytest
 
-from axiompy import Axiom
 from axiompy._base import AxiomError
+from axiompy._sparse import SparseMatrix
 from axiompy.matrix import Matrix
 from axiompy.vector import Vector
-from axiompy._sparse import SparseMatrix
 
 
 class TestSparseMatrixConstruction:

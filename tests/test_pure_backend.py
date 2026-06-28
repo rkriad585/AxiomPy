@@ -1,9 +1,8 @@
 """Tests for PurePythonBackend."""
-import math
 
 import pytest
 
-from axiompy._backend import get_backend, register_backend, set_backend
+from axiompy._backend import get_backend, set_backend
 from axiompy._pure_array import PureArray
 from axiompy._pure_backend import PurePythonBackend
 

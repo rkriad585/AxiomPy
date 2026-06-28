@@ -1,12 +1,10 @@
 """Tests for memory-mapped array and dtype support."""
 
 import numpy as np
-import pytest
 
 from axiompy import Axiom
-from axiompy.matrix import Matrix
-from axiompy.vector import Vector
 from axiompy._mmap import MmapArray
+from axiompy.matrix import Matrix
 
 
 class TestDtype:

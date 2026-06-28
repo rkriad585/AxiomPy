@@ -2,6 +2,7 @@ import logging
 
 from ._backend import get_backend, register_backend, set_backend
 from ._config import AxiomConfig
+from ._jupyter import MatrixExplorer, PolynomialSliders
 from ._lazy import LazyExpr, _lazy_scope
 from ._mmap import MmapArray, open_mmap
 from ._sparse import SparseMatrix
@@ -149,6 +150,8 @@ class AxiomPy:
         self.SparseMatrix = SparseMatrix
         self.MmapArray = MmapArray
         self.open_mmap = open_mmap
+        self.PolynomialSliders = PolynomialSliders
+        self.MatrixExplorer = MatrixExplorer
         self._setup_logging()
 
     def _setup_logging(self):

@@ -1,5 +1,7 @@
 import math
+
 import pytest
+
 from axiompy import Axiom
 
 

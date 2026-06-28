@@ -1,5 +1,6 @@
 import pytest
-from axiompy import Axiom, set_backend, register_backend, get_backend, Backend
+
+from axiompy import Axiom, Backend, get_backend, register_backend, set_backend
 
 
 def test_default_backend():
@@ -16,7 +17,6 @@ def test_facade_backend():
 
 
 def test_register_backend():
-    from axiompy._backend import NumpyBackend
 
     class FakeBackend(Backend):
         def array(self, data, dtype=None):

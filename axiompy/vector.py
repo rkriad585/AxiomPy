@@ -44,6 +44,33 @@ class Vector:
         rounded = [round(float(x), prec) for x in self._data]
         return f"Vector({rounded})"
 
+    def to_latex(self) -> str:
+        """Return a LaTeX vector string.
+
+        Returns:
+            str: ``\\begin{pmatrix} a & b & ... \\end{pmatrix}``.
+        """
+        prec = AxiomConfig.load().precision
+        entries = " & ".join(str(round(float(x), prec)) for x in self._data)
+        return f"\\begin{{pmatrix}}{entries}\\end{{pmatrix}}"
+
+    def _repr_latex_(self) -> str:
+        """LaTeX representation for Jupyter notebooks."""
+        return f"$${self.to_latex()}$$"
+
+    def _repr_html_(self) -> str:
+        """HTML representation for Jupyter notebooks."""
+        prec = AxiomConfig.load().precision
+        cells = "".join(
+            f"<td style='text-align:center;padding:2px 8px'>{round(float(x), prec)}</td>"
+            for x in self._data
+        )
+        return (
+            "<table style='display:inline-block;border:none;'>"
+            f"<tr>{cells}</tr>"
+            "</table>"
+        )
+
     def __getitem__(self, key):
         """Access elements by index or slice.
 

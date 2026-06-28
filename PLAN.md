@@ -188,9 +188,9 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 ## Phase 8 — Interactive & ecosystem
 
 ### 8.1 Jupyter integration
-- [ ] `_repr_html_` / `_repr_latex_` for `Vector`, `Matrix`, `Polynomial`
-- [ ] LaTeX output via `$$` delimiters
-- [ ] Jupyter widget for live parameter exploration
+- [x] `_repr_html_` / `_repr_latex_` for `Vector`, `Matrix`, `Polynomial`, `SparseMatrix`
+- [x] LaTeX output via `$$` delimiters
+- [x] Jupyter widget for live parameter exploration (`PolynomialSliders`, `MatrixExplorer`)
 
 ### 8.2 `axiompy` CLI tool
 - [ ] `axiompy shell` — interactive REPL with `Axiom` pre-imported

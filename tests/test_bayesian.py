@@ -1,5 +1,5 @@
-import math
 import pytest
+
 from axiompy import Axiom
 from axiompy.bayesian import BetaBinomial, NormalNormal, PoissonGamma
 
