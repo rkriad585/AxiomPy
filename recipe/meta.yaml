@@ -1,0 +1,44 @@
+{% set name = "axiompy" %}
+{% set version = "4.0.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/axiompy-{{ version }}.tar.gz
+  sha256: PLACEHOLDER
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  entry_points:
+    - axiompy = axiompy.cli:main
+
+requirements:
+  host:
+    - python >=3.9
+    - pip
+    - hatchling
+  run:
+    - python >=3.9
+    - numpy >=1.20.0
+    - pip
+
+test:
+  imports:
+    - axiompy
+  commands:
+    - axiompy info
+  requires:
+    - pip
+
+about:
+  home: https://github.com/rkriad585/AxiomPy
+  summary: A powerful Python mathematics engine for computation and education.
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - rkriad585

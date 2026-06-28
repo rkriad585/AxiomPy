@@ -1,8 +1,10 @@
 # AxiomPy: The Python Mathematics & Computation Engine
 
 [![PyPI version](https://img.shields.io/pypi/v/axiompy.svg)](https://pypi.org/project/axiompy/)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/axiompy.svg)](https://pypi.org/project/axiompy/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python Versions](https://img.shields.io/pypi/pyversions/axiompy.svg)](https://pypi.org/project/axiompy/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14863522.svg)](https://doi.org/10.5281/zenodo.14863522)
 
 **Author:** RK Riad Khan ([rkriad585](https://github.com/rkriad585))
 

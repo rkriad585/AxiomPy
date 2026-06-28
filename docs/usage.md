@@ -994,6 +994,31 @@ logging.getLogger("axiompy").setLevel(logging.DEBUG)
 
 When `verbose = true` in the config, debug logging is enabled automatically.
 
+## Publication (Phase 8.3)
+
+### Creating a release
+
+```bash
+# Tag the current version
+git tag v$(python -c "from axiompy import __version__; print(__version__)")
+git push origin --tags
+```
+
+Then create a GitHub Release from the tag — the ``.github/workflows/publish.yml``
+workflow automatically builds and publishes to PyPI.
+
+### Conda-forge
+
+A ``recipe/meta.yaml`` is provided for conda-forge feedstock.  The actual
+conda-forge submission must be made via a pull request to the
+`staged-recipes <https://github.com/conda-forge/staged-recipes>`_ repository.
+
+### Zenodo citation
+
+The ``.zenodo.json`` file contains metadata for Zenodo DOI registration.
+When a GitHub Release is published, Zenodo automatically creates a new DOI
+version (once the Zenodo-GitHub integration is enabled for the repository).
+
 ## Running tests
 
 ```bash

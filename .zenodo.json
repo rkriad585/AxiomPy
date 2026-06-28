@@ -1,0 +1,21 @@
+{
+    "title": "AxiomPy: The Python Mathematics & Computation Engine",
+    "description": "A powerful Python mathematics engine built from first principles, providing linear algebra, graph analysis, number theory, automatic differentiation, and more through a unified API.",
+    "creators": [
+        {
+            "name": "rkriad585",
+            "affiliation": ""
+        }
+    ],
+    "keywords": [
+        "mathematics",
+        "linear-algebra",
+        "automatic-differentiation",
+        "number-theory",
+        "graph-theory",
+        "numpy"
+    ],
+    "license": "MIT",
+    "upload_type": "software",
+    "access_right": "open"
+}

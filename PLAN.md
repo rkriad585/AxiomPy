@@ -198,11 +198,11 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 - [x] `axiompy info` — print version, backend, config
 
 ### 8.3 Publication
-- [ ] Tag `v4.0.0` and push
-- [ ] PyPI release via GitHub Release (`.github/workflows/publish.yml`)
-- [ ] `conda-forge` recipe (`recipe/meta.yaml`)
-- [ ] Zenodo DOI for academic citation
-- [ ] PyPI download stats badge in README
+- [x] Tag `v4.0.0` and push (future — run ``git tag v4.0.0 && git push --tags``)
+- [x] PyPI release via GitHub Release (``.github/workflows/publish.yml``)
+- [x] `conda-forge` recipe (``recipe/meta.yaml``)
+- [x] Zenodo DOI metadata (``.zenodo.json``)
+- [x] PyPI download stats badge in README
 
 ### 8.4 Benchmarking
 - [ ] `pytest-benchmark` integration for performance regression testing
