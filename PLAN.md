@@ -78,10 +78,10 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 - [x] `fibonacci(n)` / `lucas(n)`
 
 ### 5.10 Electromagnetism depth (`electromagnetism.py`)
-- [ ] `calculate_magnetic_field(charges, point, velocities)` — Biot-Savart
-- [ ] `electric_potential(charges, point)` — scalar potential
-- [ ] `dipole_moment(charges)` — net dipole moment
-- [ ] Field superposition helper: `combine_fields(fields)`
+- [x] `calculate_magnetic_field(charges, point, velocities)` — Biot-Savart
+- [x] `electric_potential(charges, point)` — scalar potential
+- [x] `dipole_moment(charges)` — net dipole moment
+- [x] Field superposition helper: `combine_fields(fields)`
 
 ### 5.11 Visualization depth (`visualization.py`)
 - [ ] `plot_histogram(data, bins=10)` — ASCII histogram

@@ -236,6 +236,22 @@ E = Axiom.electromagnetism.calculate_electric_field(charges, (0.5, 0.5, 0))
 `Electromagnetism.Charge` is a namedtuple with fields `q` (coulombs) and
 `position` (3-tuple). `calculate_electric_field` returns a `Vector`.
 
+### Advanced electromagnetism (Phase 5.10)
+
+```python
+# Electric potential (scalar)
+Electromagnetism.electric_potential(charges, point)
+
+# Magnetic field via Biot-Savart (moving charges)
+Electromagnetism.calculate_magnetic_field(charges, point, velocities)
+
+# Electric dipole moment
+Electromagnetism.dipole_moment(charges)
+
+# Field superposition
+Electromagnetism.combine_fields([field1, field2])
+```
+
 ## Statistics
 
 ```python
