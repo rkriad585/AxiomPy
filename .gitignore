@@ -27,5 +27,13 @@ env/
 .DS_Store
 Thumbs.db
 
-# Project-specific
-AGENTS.md
+# Testing
+.pytest_cache/
+.benchmarks/
+
+# Docs build
+html/
+site/
+
+# Logs
+*.log

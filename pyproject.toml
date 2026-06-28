@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "axiompy"
+name = "axiom-math"
 version = "4.0.0"
 description = "A powerful Python mathematics engine for computation and education."
 readme = "README.md"
@@ -32,7 +32,7 @@ Homepage = "https://github.com/rkriad585/AxiomPy"
 Repository = "https://github.com/rkriad585/AxiomPy"
 
 [tool.hatch.build.targets.sdist]
-include = ["/axiompy"]
+include = ["axiompy"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["axiompy"]

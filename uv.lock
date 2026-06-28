@@ -35,7 +35,7 @@ wheels = [
 ]
 
 [[package]]
-name = "axiompy"
+name = "axiom-math"
 version = "4.0.0"
 source = { editable = "." }
 dependencies = [
