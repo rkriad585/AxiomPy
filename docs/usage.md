@@ -495,6 +495,33 @@ Signal.upsample(x, factor=2)
 Signal.spectrogram(x, window_size=64, hop_size=32)
 ```
 
+## Bayesian Statistics (Phase 6.5)
+
+```python
+from axiompy import Axiom
+
+# Conjugate families
+bb = Axiom.BetaBinomial(alpha=2, beta=2)          # coin bias prior
+post_bb = bb.posterior(k=7, n=10)                 # 7 heads in 10 flips
+post_bb.mean()                                    # posterior mean
+post_bb.credible_interval()                       # 95% approx CI
+
+nn = Axiom.NormalNormal(mu0=0, sigma0=10)         # vague prior for mean
+post_nn = nn.posterior([1.2, 1.5, 0.8], sigma2=0.25)
+
+pg = Axiom.PoissonGamma(shape=1, rate=1)
+post_pg = pg.posterior([2, 0, 3, 1, 2])
+
+# Generic conjugate update
+post = Axiom.posterior(bb, 'binomial', (7, 10))
+
+# MCMC with Metropolis
+def log_pdf(x):
+    return -0.5 * x[0]**2
+samples = Axiom.mcmc_metropolis(log_pdf, [0.0], steps=2000, proposal_std=1.0)
+intervals = Axiom.credible_interval(samples, mass=0.95)
+```
+
 ## ODE Solvers (Phase 6.4)
 
 ```python

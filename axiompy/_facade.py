@@ -3,6 +3,14 @@ import logging
 from ._backend import get_backend, register_backend, set_backend
 from ._config import AxiomConfig
 from .autodiff import AutoDiff
+from .bayesian import (
+    BetaBinomial,
+    NormalNormal,
+    PoissonGamma,
+    mcmc_metropolis,
+    posterior,
+)
+from .bayesian import credible_interval as bayesian_credible_interval
 from .calculus import Calculus
 from .complex_numbers import ComplexMatrix, ComplexNumber, ComplexVector
 from .electromagnetism import Electromagnetism
@@ -77,6 +85,12 @@ class AxiomPy:
         self.solve_bvp = solve_bvp
         self.pendulum_odes = pendulum_odes
         self.lotka_volterra_odes = lotka_volterra_odes
+        self.BetaBinomial = BetaBinomial
+        self.NormalNormal = NormalNormal
+        self.PoissonGamma = PoissonGamma
+        self.posterior = posterior
+        self.mcmc_metropolis = mcmc_metropolis
+        self.credible_interval = bayesian_credible_interval
         self._setup_logging()
 
     def _setup_logging(self):

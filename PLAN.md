@@ -124,10 +124,10 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 - [x] `pendulum_odes` / `lotka_volterra_odes` — example system factories
 
 ### 6.5 Bayesian statistics (`bayesian.py`)
-- [ ] `BetaBinomial`, `NormalNormal`, `PoissonGamma` — conjugate families
-- [ ] `posterior(prior, likelihood, data)` — generic conjugate update
-- [ ] `credible_interval(distribution, mass=0.95)`
-- [ ] `mcmc_metropolis(log_pdf, start, steps=1000, proposal_std=0.1)` — MCMC sampler
+- [x] `BetaBinomial`, `NormalNormal`, `PoissonGamma` — conjugate families
+- [x] `posterior(prior, likelihood, data)` — generic conjugate update
+- [x] `credible_interval(samples, mass=0.95)` — equal-tailed interval from MCMC samples
+- [x] `mcmc_metropolis(log_pdf, start, steps, proposal_std)` — Metropolis MCMC sampler
 
 ### 6.6 Fractals / chaos (`fractal.py`)
 - [ ] `mandelbrot(width, height, x_range, y_range, max_iter)` — Mandelbrot set
