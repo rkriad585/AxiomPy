@@ -495,6 +495,31 @@ Signal.upsample(x, factor=2)
 Signal.spectrogram(x, window_size=64, hop_size=32)
 ```
 
+## Geometry / Spatial (Phase 6.7)
+
+```python
+from axiompy import Axiom
+
+# Primitives
+p = Axiom.Point(1, 2, 3)
+line = Axiom.Line(Axiom.Point(0, 0), Axiom.Point(1, 1))
+plane = Axiom.Plane(Axiom.Point(0, 0, 0), Axiom.Point(0, 0, 1))
+sphere = Axiom.Sphere(Axiom.Point(0, 0, 0), 1.0)
+
+# Distance & projection
+Axiom.distance(p1, p2)                       # Euclidean distance
+Axiom.closest_point_on_line(line, p)         # orthogonal projection
+Axiom.project_point_on_plane(plane, p)
+
+# Intersection
+line.intersection(other_line)
+sphere.intersect_line(ray_line)              # 0, 1, or 2 hit points
+
+# Algorithms
+Axiom.convex_hull(points)                    # Andrew's monotone chain
+Axiom.closest_pair(points)                   # divide & conquer
+```
+
 ## Fractals / Chaos (Phase 6.6)
 
 ```python

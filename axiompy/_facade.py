@@ -21,6 +21,17 @@ from .fractal import (
     lyapunov_exponent,
     mandelbrot,
 )
+from .geometry import (
+    Line,
+    Plane,
+    Point,
+    Sphere,
+    closest_pair,
+    closest_point_on_line,
+    convex_hull,
+    distance,
+    project_point_on_plane,
+)
 from .graph import Graph, GraphAnalysis
 from .linalg import LinearAlgebra
 from .matrix import Matrix
@@ -103,6 +114,15 @@ class AxiomPy:
         self.logistic_map = logistic_map
         self.bifurcation_diagram = bifurcation_diagram
         self.lyapunov_exponent = lyapunov_exponent
+        self.Point = Point
+        self.Line = Line
+        self.Plane = Plane
+        self.Sphere = Sphere
+        self.distance = distance
+        self.closest_point_on_line = closest_point_on_line
+        self.project_point_on_plane = project_point_on_plane
+        self.convex_hull = convex_hull
+        self.closest_pair = closest_pair
         self._setup_logging()
 
     def _setup_logging(self):

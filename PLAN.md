@@ -137,10 +137,10 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 - [x] `lyapunov_exponent(f, x0, n)` — estimate via orbit
 
 ### 6.7 Geometry / spatial (`geometry.py`)
-- [ ] `Point`, `Line`, `Plane`, `Sphere` primitives
-- [ ] Distance, intersection, projection helpers
-- [ ] `convex_hull(points)` — Andrew's monotone chain
-- [ ] `closest_pair(points)` — divide & conquer
+- [x] `Point`, `Line`, `Plane`, `Sphere` primitives
+- [x] Distance, intersection, projection helpers
+- [x] `convex_hull(points)` — Andrew's monotone chain
+- [x] `closest_pair(points)` — divide & conquer
 
 ### 6.8 Cryptography helpers (`crypto.py`)
 - [ ] `rsa_keygen(bits=1024)` — generate public/private key pair
