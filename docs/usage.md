@@ -495,6 +495,32 @@ Signal.upsample(x, factor=2)
 Signal.spectrogram(x, window_size=64, hop_size=32)
 ```
 
+## ODE Solvers (Phase 6.4)
+
+```python
+from axiompy import Axiom
+
+# Unified IVP solver with multiple methods
+rhs = lambda t, y: [y[0]]  # dy/dt = y
+ts, ys = Axiom.solve_ivp(rhs, [1.0], (0, 1), method='rk4', dt=0.01)
+# methods: 'euler', 'rk4', 'rk45' (adaptive), 'adams_bashforth'
+
+# BVP via shooting method
+# y'' = -y, y(0)=0, y(pi/2)=1
+def bvp_rhs(t, y):
+    return [y[1], -y[0]]
+def bvp_bc(y_end):
+    return [y_end[0] - 1.0]
+ts, ys = Axiom.solve_bvp(bvp_rhs, bvp_bc, (0, math.pi/2), [0, 1])
+
+# System factories
+pend = Axiom.pendulum_odes(g=9.81, L=1.0, b=0.2)
+ts, ys = Axiom.solve_ivp(pend, [0.5, 0.0], (0, 10), method='rk4')
+
+lv = Axiom.lotka_volterra_odes(alpha=1.0, beta=0.1, gamma=1.5, delta=0.075)
+ts, ys = Axiom.solve_ivp(lv, [10.0, 2.0], (0, 50), method='rk4')
+```
+
 ## Special Functions (Phase 6.3)
 
 ```python

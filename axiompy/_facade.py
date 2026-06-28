@@ -10,6 +10,7 @@ from .graph import Graph, GraphAnalysis
 from .linalg import LinearAlgebra
 from .matrix import Matrix
 from .number_theory import NumberTheory
+from .odes import lotka_volterra_odes, pendulum_odes, solve_bvp, solve_ivp
 from .optimization import Optimization
 from .polynomial import Polynomial
 from .signal import Signal
@@ -72,6 +73,10 @@ class AxiomPy:
         self.factorial = factorial
         self.binomial = binomial
         self.double_factorial = double_factorial
+        self.solve_ivp = solve_ivp
+        self.solve_bvp = solve_bvp
+        self.pendulum_odes = pendulum_odes
+        self.lotka_volterra_odes = lotka_volterra_odes
         self._setup_logging()
 
     def _setup_logging(self):

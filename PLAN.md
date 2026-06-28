@@ -118,10 +118,10 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 - [x] `factorial(n)`, `binomial(n, k)`, `double_factorial(n)`
 
 ### 6.4 Differential equations (`odes.py`)
-- [ ] `solve_ivp(f, y0, t_span, method='rk4', dt=0.01)` — general ODE solver
-- [ ] Methods: Euler, RK4, RK45 (adaptive), Adams-Bashforth
-- [ ] `solve_bvp(f, bc, x_span, guess)` — boundary value problems
-- [ ] `pendulum_odes` / `lotka_volterra_odes` — example system factories
+- [x] `solve_ivp(f, y0, t_span, method='rk4', dt=0.01)` — general ODE solver
+- [x] Methods: Euler, RK4, RK45 (adaptive), Adams-Bashforth
+- [x] `solve_bvp(f, bc, x_span, guess)` — boundary value problems (shooting)
+- [x] `pendulum_odes` / `lotka_volterra_odes` — example system factories
 
 ### 6.5 Bayesian statistics (`bayesian.py`)
 - [ ] `BetaBinomial`, `NormalNormal`, `PoissonGamma` — conjugate families
