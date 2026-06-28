@@ -14,6 +14,13 @@ from .bayesian import credible_interval as bayesian_credible_interval
 from .calculus import Calculus
 from .complex_numbers import ComplexMatrix, ComplexNumber, ComplexVector
 from .electromagnetism import Electromagnetism
+from .fractal import (
+    bifurcation_diagram,
+    julia,
+    logistic_map,
+    lyapunov_exponent,
+    mandelbrot,
+)
 from .graph import Graph, GraphAnalysis
 from .linalg import LinearAlgebra
 from .matrix import Matrix
@@ -91,6 +98,11 @@ class AxiomPy:
         self.posterior = posterior
         self.mcmc_metropolis = mcmc_metropolis
         self.credible_interval = bayesian_credible_interval
+        self.mandelbrot = mandelbrot
+        self.julia = julia
+        self.logistic_map = logistic_map
+        self.bifurcation_diagram = bifurcation_diagram
+        self.lyapunov_exponent = lyapunov_exponent
         self._setup_logging()
 
     def _setup_logging(self):

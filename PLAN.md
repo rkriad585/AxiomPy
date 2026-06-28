@@ -130,11 +130,11 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 - [x] `mcmc_metropolis(log_pdf, start, steps, proposal_std)` — Metropolis MCMC sampler
 
 ### 6.6 Fractals / chaos (`fractal.py`)
-- [ ] `mandelbrot(width, height, x_range, y_range, max_iter)` — Mandelbrot set
-- [ ] `julia(c, width, height, x_range, y_range, max_iter)` — Julia set
-- [ ] `logistic_map(r, x0, n)` — logistic map iteration
-- [ ] `bifurcation_diagram(r_range, x0, n_transient, n_plot)` — ASCII bifurcation
-- [ ] `lyapunov_exponent(f, x0, n)` — estimate via orbit
+- [x] `mandelbrot(width, height, x_range, y_range, max_iter)` — Mandelbrot set
+- [x] `julia(c, width, height, x_range, y_range, max_iter)` — Julia set
+- [x] `logistic_map(r, x0, n)` — logistic map iteration
+- [x] `bifurcation_diagram(r_range, x0, n_transient, n_plot)` — bifurcation points
+- [x] `lyapunov_exponent(f, x0, n)` — estimate via orbit
 
 ### 6.7 Geometry / spatial (`geometry.py`)
 - [ ] `Point`, `Line`, `Plane`, `Sphere` primitives

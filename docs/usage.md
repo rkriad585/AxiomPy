@@ -495,6 +495,26 @@ Signal.upsample(x, factor=2)
 Signal.spectrogram(x, window_size=64, hop_size=32)
 ```
 
+## Fractals / Chaos (Phase 6.6)
+
+```python
+from axiompy import Axiom
+
+# Mandelbrot & Julia sets (return 2D int grids)
+grid = Axiom.mandelbrot(width=80, height=40, max_iter=100)
+grid = Axiom.julia(-0.7+0.27j, width=80, height=40, max_iter=100)
+
+# Logistic map
+orbit = Axiom.logistic_map(r=3.8, x0=0.5, n=100)
+
+# Bifurcation diagram points
+pts = Axiom.bifurcation_diagram(2.5, 4.0, r_steps=500)
+
+# Lyapunov exponent
+f = lambda x: 4.0 * x * (1 - x)
+lam = Axiom.lyapunov_exponent(f, x0=0.5, n=1000)
+```
+
 ## Bayesian Statistics (Phase 6.5)
 
 ```python
