@@ -1,9 +1,19 @@
 import numpy as np
-from .vector import Vector
+
 
 class Visualization:
+    """ASCII-based plotting utilities for data and vector fields."""
+
     @staticmethod
     def plot_ascii(x_data, y_data, width: int = 60, height: int = 15):
+        """Render an ASCII scatter plot of x_data vs y_data.
+
+        Args:
+            x_data: Sequence of x-coordinates.
+            y_data: Sequence of y-coordinates.
+            width (int): Character width of the plot.
+            height (int): Character height of the plot.
+        """
         if not x_data or not y_data:
             return
         min_x, max_x = min(x_data), max(x_data)
@@ -27,6 +37,15 @@ class Visualization:
 
     @staticmethod
     def plot_field_ascii(field_fn, center, size, width=30, height=15):
+        """Render an ASCII direction plot of a 2D vector field.
+
+        Args:
+            field_fn: Callable that takes a point and returns a vector.
+            center: Center of the field region.
+            size: Side length of the square region.
+            width (int): Character width of the plot.
+            height (int): Character height of the plot.
+        """
         arrows = {(1, 0): '>', (-1, 0): '<', (0, 1): '^', (0, -1): 'v'}
         for j in range(height, 0, -1):
             line = ""

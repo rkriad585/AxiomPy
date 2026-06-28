@@ -1,9 +1,11 @@
-import numpy as np
-from typing import List, TypeVar
+from typing import TypeVar
 
-MatrixData = List[List[float]]
-VectorData = List[float]
+MatrixData = list[list[float]]
+VectorData = list[float]
 GraphNode = TypeVar('GraphNode')
 
 class AxiomError(Exception):
-    pass
+    """Base exception for all AxiomPy errors.
+
+    All custom exceptions in the package inherit from this class.
+    """

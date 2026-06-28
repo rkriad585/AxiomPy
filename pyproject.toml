@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "axiompy"
-version = "3.0.0"
+version = "4.0.0"
 description = "A powerful Python mathematics engine for computation and education."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -33,3 +33,28 @@ include = ["/axiompy"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["axiompy"]
+
+[tool.axiompy]
+precision = 6
+dtype = "float64"
+verbose = false
+
+[dependency-groups]
+dev = [
+    "pytest>=7.0.0",
+    "ruff>=0.6.0",
+    "sphinx>=7.0.0",
+    "sphinx-rtd-theme>=2.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py39"
+lint.select = ["F", "E", "W", "I", "N", "UP", "YTT", "ASYNC", "SIM", "RUF"]
+lint.ignore = ["E501", "E741", "N802", "N803", "N806", "N818", "SIM108"]
+lint.per-file-ignores = {"__init__.py" = ["F401", "F403"]}
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"

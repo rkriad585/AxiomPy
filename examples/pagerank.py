@@ -11,3 +11,11 @@ ranks = Axiom.graph_analysis.pagerank(g)
 print("PageRank scores:")
 for node, rank in sorted(ranks.items(), key=lambda x: x[1], reverse=True):
     print(f"  {node}: {rank:.4f}")
+
+# PageRank with personalization
+personalized = Axiom.graph_analysis.pagerank(
+    g, personalization={"A": 0.5, "B": 0.3, "C": 0.1, "D": 0.1}
+)
+print("\nPersonalized PageRank:")
+for node, rank in sorted(personalized.items(), key=lambda x: x[1], reverse=True):
+    print(f"  {node}: {rank:.4f}")

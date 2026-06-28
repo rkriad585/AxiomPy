@@ -51,9 +51,35 @@ M.to_list()   # nested list
 ### Factory methods
 
 ```python
-Axiom.linalg.identity(3)          # 3×3 identity
-Axiom.linalg.zeros((2, 3))        # 2×3 zeros
-Axiom.linalg.ones((4, 1))         # 4×1 ones
+Axiom.linalg.identity(3)          # 3x3 identity
+Axiom.linalg.zeros((2, 3))        # 2x3 zeros
+Axiom.linalg.ones((4, 1))         # 4x1 ones
+```
+
+### Advanced linear algebra (Phase 5.1)
+
+```python
+# Singular value decomposition
+U, S, Vt = M.svd_decompose()
+
+# Eigen decomposition (symmetric matrices)
+M.eigenvalues()
+M.eigenvectors()
+
+# Condition number (via SVD)
+M.condition_number()
+
+# Moore-Penrose pseudoinverse
+M.pinv()
+
+# Least-squares solution to Ax = b
+x = Axiom.linalg.least_squares(A_mat, b_vec)
+
+# Cross-product matrix (skew-symmetric)
+Axiom.linalg.cross_product_matrix(v)
+
+# Householder reflection
+Axiom.linalg.householder(v)
 ```
 
 ## Graph Analysis
@@ -71,17 +97,38 @@ ranks = Axiom.graph_analysis.pagerank(g)
 ```
 
 `pagerank` accepts optional keyword arguments:
-- `damping` (default `0.85`) — PageRank damping factor
-- `max_iter` (default `100`) — maximum iterations
-- `tol` (default `1e-6`) — convergence tolerance
+- `damping` (default `0.85`) -- PageRank damping factor
+- `max_iter` (default `100`) -- maximum iterations
+- `tol` (default `1e-6`) -- convergence tolerance
+- `personalization` (dict, optional) -- per-node teleport weights
+
+### Advanced graph algorithms (Phase 5.2)
+
+```python
+# Minimum spanning tree (Kruskal's)
+g.minimum_spanning_tree()
+
+# Bipartiteness
+g.is_bipartite()
+g.bipartite_sets()
+
+# Topological sort (DAG only)
+g.topological_sort()
+
+# Maximum flow (Edmonds-Karp)
+g.max_flow("source", "sink")
+
+# Graph diameter (longest shortest path)
+g.diameter()
+```
 
 ## Number Theory
 
 ```python
 # Chinese Remainder Theorem
-#   x ≡ 2 (mod 3)
-#   x ≡ 3 (mod 5)
-#   x ≡ 2 (mod 7)
+#   x = 2 (mod 3)
+#   x = 3 (mod 5)
+#   x = 2 (mod 7)
 Axiom.number_theory.chinese_remainder_theorem([3, 5, 7], [2, 3, 2])
 # 23
 
@@ -90,6 +137,28 @@ Axiom.number_theory.mod_inverse(7, 26)   # 15
 
 # Extended Euclidean algorithm
 Axiom.number_theory.extended_gcd(30, 20)  # (10, 1, -1)
+```
+
+### Advanced number theory (Phase 5.9)
+
+```python
+# Probabilistic primality test (Miller-Rabin)
+Axiom.number_theory.miller_rabin(7919)
+
+# Prime generation
+Axiom.number_theory.next_prime(100)       # 101
+Axiom.number_theory.nth_prime(10)         # 29
+
+# Quadratic residue symbols
+Axiom.number_theory.legendre_symbol(2, 7)
+Axiom.number_theory.jacobi_symbol(7, 15)
+
+# Discrete logarithm (baby-step giant-step)
+Axiom.number_theory.discrete_log(2, 8, 13)  # 3
+
+# Fibonacci and Lucas numbers
+Axiom.number_theory.fibonacci(10)   # 55
+Axiom.number_theory.lucas(10)       # 123
 ```
 
 ## Automatic Differentiation
@@ -116,7 +185,7 @@ Built-in functions on `Variable`:
 x = Axiom.autodiff.Variable(1.5)
 f = Axiom.autodiff.sin(x ** 2)
 f.backward()
-x.grad  # df/dx = 2 * 1.5 * cos(1.5²)
+x.grad  # df/dx = 2 * 1.5 * cos(1.5^2)
 ```
 
 Available functions: `sin`, `exp`, `log`, `tanh`, `sigmoid`, `sqrt`.
@@ -129,6 +198,24 @@ from axiompy import Axiom
 f = lambda x: x ** 2 + 2 * x + 1
 minimum = Axiom.autodiff.gradient_descent(f, start=5.0, lr=0.1, steps=100)
 # -1.0
+```
+
+### Advanced autodiff (Phase 5.6)
+
+```python
+# Instance methods
+x = Axiom.autodiff.Variable(1.0)
+x.tanh()     # same as Axiom.autodiff.tanh(x)
+x.sigmoid()
+
+# Computational graph visualization
+z.to_ascii()
+
+# Adam optimizer
+Axiom.autodiff.adam(f, [0.0, 0.0], steps=100, lr=0.1)
+
+# Hessian via forward-over-reverse
+Axiom.autodiff.hessian(f, [1.0, 1.0])
 ```
 
 ## Electromagnetism
@@ -160,8 +247,31 @@ data = Axiom.Matrix([
 Axiom.stats.covariance_matrix(data)
 ```
 
-Rows are observations, columns are variables. Uses `numpy.cov` internally
-with `rowvar=False`.
+Rows are observations, columns are variables.
+
+### Advanced statistics (Phase 5.3)
+
+```python
+# Hypothesis tests
+Statistics.ttest_1samp([1, 2, 3, 4, 5], 3.0)
+Statistics.ttest_ind([1, 2, 3], [2, 3, 4])
+Statistics.ttest_paired([1, 2, 3], [2, 3, 4])
+Statistics.chisquare([20, 30, 25, 25], [25, 25, 25, 25])
+Statistics.f_oneway([1, 2, 3], [2, 3, 4], [3, 4, 5])
+
+# Distribution functions
+Statistics.uniform_pdf(0.5)
+Statistics.uniform_cdf(0.5)
+Statistics.exponential_pdf(1.0, rate=2.0)
+Statistics.binomial_pmf(3, 5, 0.5)
+
+# Robust statistics
+Statistics.zscore([1, 2, 3, 4, 5])    # standardized scores
+Statistics.mad([1, 2, 3, 4, 5])       # median absolute deviation
+
+# Covariance matrix with raw arrays and ddof
+Statistics.covariance_matrix([[1, 2], [3, 4], [5, 6]], ddof=0)
+```
 
 ## Visualization
 
@@ -203,13 +313,36 @@ f = lambda x: x ** 2
 Calculus.numerical_derivative(f, 3.0)   # 6.0
 
 # Integration
-Calculus.integrate_trapezoid(f, 0, 1)    # ≈ 1/3
-Calculus.integrate_simpson(f, 0, 1)      # ≈ 1/3
-Calculus.integrate_monte_carlo(f, 0, 1)  # ≈ 1/3
+Calculus.integrate_trapezoid(f, 0, 1)    # ~ 1/3
+Calculus.integrate_simpson(f, 0, 1)      # ~ 1/3
+Calculus.integrate_monte_carlo(f, 0, 1)  # ~ 1/3
 
 # Multivariate numerical gradient
 g = lambda p: p[0]**2 + p[1]**2
 Calculus.gradient(g, [1.0, 2.0])  # [2.0, 4.0]
+```
+
+### Advanced calculus (Phase 5.4)
+
+```python
+# Richardson extrapolation (high-order derivative)
+Calculus.richardson_extrapolation(math.sin, 0.0)
+
+# Gaussian quadrature (n = 2..8 supported)
+Calculus.integrate_gauss_legendre(lambda x: x**2, 0, 1, n=5)
+
+# Romberg integration
+Calculus.integrate_romberg(lambda x: x**2, 0, 1)
+
+# Numerical Jacobian matrix
+Calculus.jacobian(lambda p: [p[0]**2 + p[1], p[0] - p[1]**3], [1.0, 2.0])
+
+# Numerical Hessian matrix
+Calculus.hessian(lambda p: p[0]**2 + 3*p[0]*p[1] + p[1]**2, [1.0, 1.0])
+
+# ODE solvers
+Calculus.ode_euler(lambda t, y: y, 1.0, (0.0, 2.0), dt=0.01)
+Calculus.ode_rk4(lambda t, y: y, 1.0, (0.0, 2.0), dt=0.01)
 ```
 
 ## Polynomials
@@ -217,7 +350,7 @@ Calculus.gradient(g, [1.0, 2.0])  # [2.0, 4.0]
 ```python
 from axiompy.polynomial import Polynomial
 
-p = Polynomial([1, -3, 2])     # 2x² - 3x + 1
+p = Polynomial([1, -3, 2])     # 2x^2 - 3x + 1
 p(2)                           # 3
 p.degree                        # 2
 p.derivative()                  # Polynomial(4x - 3)
@@ -227,10 +360,30 @@ p.integral()                    # indefinite integral
 p.roots()                       # [0.5, 1.0]
 
 # Lagrange interpolation
-Polynomial.lagrange_interpolate([0, 1, 2], [0, 1, 4])  # x²
+Polynomial.lagrange_interpolate([0, 1, 2], [0, 1, 4])  # x^2
 ```
 
 Also accessible as `Axiom.Polynomial`.
+
+### Advanced polynomial features (Phase 5.8)
+
+```python
+# Division with remainder
+p // q                          # quotient
+p % q                           # remainder
+
+# Polynomial GCD (Euclidean algorithm)
+p.gcd(q)
+
+# Composition p(q(x))
+p.compose(q)
+
+# Chebyshev roots
+Polynomial.chebyshev_roots(5)
+
+# Least-squares polynomial fit
+Polynomial.fit([0, 1, 2, 3, 4], [0, 1, 4, 9, 16], degree=2)
+```
 
 ## Optimization
 
@@ -247,6 +400,25 @@ Optimization.newton_method(f, df, d2f, start=5.0, steps=10)          # -1.0
 
 # Root finding
 Optimization.bisection(lambda x: x**2 - 4, 0, 5)  # 2.0
+```
+
+### Advanced optimization (Phase 5.5)
+
+```python
+# Golden section search (1-D)
+Optimization.golden_section(lambda x: (x-2)**2, 0, 5)
+
+# Conjugate gradient for SPD systems
+Optimization.conjugate_gradient([[4, 1], [1, 3]], [1, 2], [0, 0])
+
+# Nelder-Mead simplex (derivative-free)
+Optimization.nelder_mead(lambda p: (p[0]-1)**2 + (p[1]-2)**2, [0, 0])
+
+# L-BFGS (limited-memory BFGS)
+Optimization.lbfgs(f, grad_f, start)
+
+# Simulated annealing
+Optimization.simulated_annealing(lambda p: (p[0]-3)**2 + (p[1]+1)**2, [0, 0])
 ```
 
 ## Signal Processing
@@ -271,6 +443,27 @@ Signal.convolve([1, 2, 3], [0, 1, 0.5])  # [0.0, 1.0, 2.5, 4.0, 1.5]
 Signal.moving_average([1, 2, 3, 4, 5], window=3)  # [2.0, 3.0, 4.0]
 ```
 
+### Advanced signal processing (Phase 5.7)
+
+```python
+# Zero-pad to next power of 2
+Signal.pad_next_power_of_two([1, 2, 3])
+
+# Autocorrelation / cross-correlation (via FFT)
+Signal.autocorrelation(x)
+Signal.cross_correlation(x, y)
+
+# FIR low-pass filter design (windowed sinc)
+Signal.sinc_filter(cutoff=100, fs=1000, taps=31)
+
+# Downsample / upsample
+Signal.downsample(x, factor=2)
+Signal.upsample(x, factor=2)
+
+# Spectrogram (STFT magnitude)
+Signal.spectrogram(x, window_size=64, hop_size=32)
+```
+
 ## Error handling
 
 All custom exceptions inherit from `AxiomError` (defined in `_base.py`):
@@ -282,4 +475,72 @@ try:
     inv = Axiom.number_theory.mod_inverse(2, 4)
 except AxiomError as e:
     print(e)  # "Modular inverse does not exist for 2 and 4"
+```
+
+## Configuration
+
+AxiomPy can be configured via `pyproject.toml` or programmatically:
+
+```toml
+[tool.axiompy]
+precision = 6    # rounding precision for repr
+dtype = "float64"
+verbose = false   # enables debug logging
+```
+
+Programmatic configuration at runtime:
+
+```python
+from axiompy import AxiomConfig
+
+AxiomConfig.configure(precision=3, verbose=True)
+Axiom.config.precision  # 3
+
+# Reset to defaults
+AxiomConfig.reset()
+```
+
+## Numeric Backend
+
+Backend system allows swapping the array library:
+
+```python
+from axiompy import Axiom
+
+Axiom.backend  # NumpyBackend instance
+
+# Switch backends (initially only "numpy" is registered)
+Axiom.set_backend("numpy")
+```
+
+Custom backends can be registered:
+
+```python
+from axiompy import Backend, register_backend
+
+class MyBackend(Backend):
+    def array(self, data, dtype=None): ...
+    def dot(self, a, b): ...
+    # ... implement all abstract methods
+
+register_backend("mybackend", MyBackend)
+Axiom.set_backend("mybackend")
+```
+
+## Logging
+
+Each module has a `logging.Logger` at `axiompy.<module>`. Set log level via the facade or directly:
+
+```python
+import logging
+logging.getLogger("axiompy").setLevel(logging.DEBUG)
+```
+
+When `verbose = true` in the config, debug logging is enabled automatically.
+
+## Running tests
+
+```bash
+uv sync --dev
+uv run pytest tests/ -v
 ```

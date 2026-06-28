@@ -1,6 +1,6 @@
+
 from axiompy import Axiom
 from axiompy.stats import Statistics
-import math
 
 data = Axiom.Matrix([
     [1, 2, 3],
