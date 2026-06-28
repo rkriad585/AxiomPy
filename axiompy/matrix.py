@@ -1,6 +1,11 @@
+from __future__ import annotations
+
 import logging
 from numbers import Number
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from ._sparse import SparseMatrix
 
 import numpy as np
 
@@ -58,7 +63,7 @@ class Matrix:
         return self._data.shape
 
     @property
-    def T(self) -> 'Matrix':
+    def T(self) -> Matrix:
         """Return the transpose of the matrix.
 
         Returns:
@@ -76,7 +81,7 @@ class Matrix:
         return np.linalg.det(self._data)
 
     @property
-    def inverse(self) -> 'Matrix':
+    def inverse(self) -> Matrix:
         """Compute the multiplicative inverse of the matrix.
 
         Returns:
@@ -169,7 +174,7 @@ class Matrix:
         """
         return NotImplemented
 
-    def __pow__(self, power: int) -> 'Matrix':
+    def __pow__(self, power: int) -> Matrix:
         """Raise the matrix to an integer power.
 
         Args:
@@ -193,7 +198,7 @@ class Matrix:
             return NotImplemented
         return np.array_equal(self._data, other._data)
 
-    def lu_decompose(self) -> tuple['Matrix', 'Matrix', 'Matrix']:
+    def lu_decompose(self) -> tuple[Matrix, Matrix, Matrix]:
         """Compute the LU decomposition with partial pivoting.
 
         Returns:
@@ -204,7 +209,7 @@ class Matrix:
         P, L, U = scipy_lu(self._data)
         return Matrix(P), Matrix(L), Matrix(U)
 
-    def qr_decompose(self) -> tuple['Matrix', 'Matrix']:
+    def qr_decompose(self) -> tuple[Matrix, Matrix]:
         """Compute the QR decomposition.
 
         Returns:
@@ -214,7 +219,7 @@ class Matrix:
         Q, R = np.linalg.qr(self._data)
         return Matrix(Q), Matrix(R)
 
-    def cholesky_decompose(self) -> 'Matrix':
+    def cholesky_decompose(self) -> Matrix:
         """Compute the Cholesky decomposition.
 
         The matrix must be symmetric positive-definite.
@@ -225,7 +230,7 @@ class Matrix:
         logger.debug("Cholesky decomposition of %s", self.shape)
         return Matrix(np.linalg.cholesky(self._data))
 
-    def svd_decompose(self) -> tuple['Matrix', Vector, 'Matrix']:
+    def svd_decompose(self) -> tuple[Matrix, Vector, Matrix]:
         """Compute the singular value decomposition.
 
         Returns:
@@ -245,7 +250,7 @@ class Matrix:
         logger.debug("Eigenvalues of %s", self.shape)
         return Vector(np.linalg.eigvalsh(self._data).tolist())
 
-    def eigenvectors(self) -> 'Matrix':
+    def eigenvectors(self) -> Matrix:
         """Compute the eigenvectors of a symmetric matrix.
 
         Returns:
@@ -267,7 +272,7 @@ class Matrix:
         """
         return float(np.linalg.cond(self._data, p=p))
 
-    def pinv(self) -> 'Matrix':
+    def pinv(self) -> Matrix:
         """Compute the Moore-Penrose pseudoinverse.
 
         Returns:
@@ -275,6 +280,19 @@ class Matrix:
         """
         logger.debug("Pseudoinverse of %s", self.shape)
         return Matrix(np.linalg.pinv(self._data))
+
+    def to_sparse(self, tol: float = 1e-15) -> SparseMatrix:
+        """Convert to a sparse ``SparseMatrix``.
+
+        Args:
+            tol: Zero threshold (entries with absolute value ≤ tol are omitted).
+
+        Returns:
+            ``SparseMatrix`` in COO format.
+        """
+        from ._sparse import SparseMatrix
+
+        return SparseMatrix.from_dense(self, tol=tol)
 
 
 def scipy_lu(A):

@@ -711,6 +711,77 @@ v = Axiom.ComplexVector([1+2j, 3+4j])
 m = Axiom.ComplexMatrix([[1j, 2j], [3j, 4j]])
 ```
 
+## Lazy Evaluation (Phase 7.3)
+
+Deferred computation builds expression trees for `Vector`/`Matrix` operations, materialized only when `.compute()` is called.
+
+```python
+from axiompy import Axiom
+
+v = Axiom.Vector([1, 2, 3])
+w = Axiom.Vector([4, 5, 6])
+
+# Build a lazy expression tree (no computation yet)
+expr = (Axiom.lazy.lazy(v) + Axiom.lazy.lazy(w)) * 2.0 - Axiom.lazy.lazy(v)
+
+# Materialize
+result = expr.compute()      # Vector([9.0, 12.0, 15.0])
+
+# Or use the scope shorthand
+result = Axiom.lazy.compute(expr)
+
+# Lazy expressions support all operators:
+expr = Axiom.lazy.lazy(v) * 3.0          # scalar multiply
+expr = Axiom.lazy.lazy(A).T              # transpose
+expr = Axiom.lazy.lazy(A) @ v            # matmul
+expr = Axiom.lazy.lazy(A) ** 2           # matrix power
+expr = Axiom.lazy.lazy(A) + 5.0          # scalar add (broadcast)
+expr = 10.0 - Axiom.lazy.lazy(A)         # rsub with broadcast
+```
+
+## Sparse Matrix (Phase 7.4)
+
+A memory-efficient sparse matrix in COO format, with CSR for fast matrix-vector products.
+
+```python
+from axiompy import Axiom
+
+# Convert a dense matrix to sparse
+M = Axiom.Matrix([[5, 0, 0], [0, 0, 3], [0, 0, 0]])
+sp = M.to_sparse()
+sp.shape       # (3, 3)
+sp.nnz         # 2
+sp.density     # 2/9 ≈ 0.2222
+
+# Convert back to dense
+dense = sp.to_dense()
+
+# Sparse identity
+I = Axiom.SparseMatrix.identity(5)
+
+# COO components
+rows, cols, data = sp.to_coo()
+
+# Arithmetic
+sp + sp                     # sparse-sparse addition
+sp + 1.0                    # scalar addition (broadcast)
+sp * 2.0                    # scalar multiplication
+
+# Matrix-vector product (O(nnz) via CSR)
+v = Axiom.Vector([1.0, 2.0, 3.0])
+result = sp @ v
+
+# Sparse-sparse matrix product
+A = Axiom.SparseMatrix([0, 1], [0, 1], [2.0, 3.0], (2, 2))
+B = Axiom.SparseMatrix([0, 1], [0, 1], [4.0, 5.0], (2, 2))
+C = A @ B
+
+# Direct construction
+sp2 = Axiom.SparseMatrix(
+    rows=[0, 2], cols=[0, 1], data=[1.5, 2.7], shape=(3, 3)
+)
+```
+
 ## Error handling
 
 All custom exceptions inherit from `AxiomError` (defined in `_base.py`):

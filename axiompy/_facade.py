@@ -2,6 +2,8 @@ import logging
 
 from ._backend import get_backend, register_backend, set_backend
 from ._config import AxiomConfig
+from ._lazy import LazyExpr, _lazy_scope
+from ._sparse import SparseMatrix
 from .autodiff import AutoDiff
 from .bayesian import (
     BetaBinomial,
@@ -141,6 +143,9 @@ class AxiomPy:
         self.elgamal_decrypt = elgamal_decrypt
         self.diffie_hellman_key_exchange = diffie_hellman_key_exchange
         self.sha256 = sha256
+        self.lazy = _lazy_scope
+        self.LazyExpr = LazyExpr
+        self.SparseMatrix = SparseMatrix
         self._setup_logging()
 
     def _setup_logging(self):

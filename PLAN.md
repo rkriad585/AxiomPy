@@ -167,13 +167,13 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 - [x] `CuPyBackend` — CUDA-accelerated via `cupy`
 
 ### 7.3 Lazy evaluation
-- [ ] `__array_function__` protocol where applicable
-- [ ] Expression trees (deferred computation) for `Vector` / `Matrix`
-- [ ] `compute()` to materialize lazy graphs
+- [x] `__array_function__` protocol where applicable
+- [x] Expression trees (deferred computation) for `Vector` / `Matrix`
+- [x] `compute()` to materialize lazy graphs
 
 ### 7.4 Memory optimization
-- [ ] `Matrix.to_sparse()` — convert to COO/CSR format
-- [ ] `SparseMatrix` — lightweight sparse matrix class
+- [x] `Matrix.to_sparse()` — convert to COO/CSR format
+- [x] `SparseMatrix` — lightweight sparse matrix class in COO/CSR
 - [ ] Out-of-core operations for large arrays (memory-mapped numpy)
 
 ---
