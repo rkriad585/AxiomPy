@@ -57,8 +57,8 @@ print(f"Hessian of x^2 + 3xy + y^2 at (1,1):\n{H}")
 def ode(t, y):
     return y
 
-euler = Calculus.ode_euler(ode, 1.0, (0.0, 2.0), dt=0.01)
-rk4 = Calculus.ode_rk4(ode, 1.0, (0.0, 2.0), dt=0.01)
+euler = Calculus.ode_euler(ode, [1.0], (0.0, 2.0), dt=0.01)
+rk4 = Calculus.ode_rk4(ode, [1.0], (0.0, 2.0), dt=0.01)
 print("\nODE y' = y, y(0) = 1 at t=2:")
-print(f"  Euler: y(2) = {euler[-1][1]:.4f}  (expected: {math.exp(2):.4f})")
-print(f"  RK4:   y(2) = {rk4[-1][1]:.4f}  (expected: {math.exp(2):.4f})")
+print(f"  Euler: y(2) = {euler[1][-1][0]:.4f}  (expected: {math.exp(2):.4f})")
+print(f"  RK4:   y(2) = {rk4[1][-1][0]:.4f}  (expected: {math.exp(2):.4f})")

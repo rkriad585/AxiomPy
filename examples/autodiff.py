@@ -61,14 +61,14 @@ z = x * y + Axiom.autodiff.sin(x)
 print("\nGraph visualization:")
 print(z.to_ascii())
 
-# Adam optimizer
-def f_adam(x, y): return (x - 1)**2 + (y + 2)**2
-x_opt = Axiom.autodiff.adam(f_adam, [0.0, 0.0], steps=100, lr=0.1)
-print("\nAdam optimization of (x-1)^2 + (y+2)^2:")
-print(f"  Minimum at: {x_opt}")
+# Adam optimizer (single-variable)
+def f_adam(x): return (x - 1)**2
+x_opt = Axiom.autodiff.adam(f_adam, 0.0, steps=100, lr=0.1)
+print("\nAdam optimization of (x-1)^2:")
+print(f"  Minimum at: {x_opt:.4f}  (expected: 1.0)")
 
-# Hessian via autodiff
+# Hessian via calculus module
 def f_rosenbrock(v):
     return (1 - v[0])**2 + 100 * (v[1] - v[0]**2)**2
-H = Axiom.autodiff.hessian(f_rosenbrock, [1.0, 1.0])
+H = Axiom.calc.hessian(f_rosenbrock, [1.0, 1.0])
 print(f"\nHessian of Rosenbrock at (1,1):\n{H}")
