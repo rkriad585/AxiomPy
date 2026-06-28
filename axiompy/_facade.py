@@ -13,6 +13,18 @@ from .number_theory import NumberTheory
 from .optimization import Optimization
 from .polynomial import Polynomial
 from .signal import Signal
+from .special import (
+    bessel_j,
+    bessel_y,
+    beta,
+    binomial,
+    double_factorial,
+    erf,
+    erfc,
+    factorial,
+    gamma,
+    legendre_p,
+)
 from .stats import Statistics
 from .tensor import Tensor
 from .vector import Vector
@@ -50,6 +62,16 @@ class AxiomPy:
         self.ComplexNumber = ComplexNumber
         self.ComplexVector = ComplexVector
         self.ComplexMatrix = ComplexMatrix
+        self.gamma = gamma
+        self.beta = beta
+        self.erf = erf
+        self.erfc = erfc
+        self.bessel_j = bessel_j
+        self.bessel_y = bessel_y
+        self.legendre_p = legendre_p
+        self.factorial = factorial
+        self.binomial = binomial
+        self.double_factorial = double_factorial
         self._setup_logging()
 
     def _setup_logging(self):

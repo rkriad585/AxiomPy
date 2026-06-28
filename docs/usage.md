@@ -495,6 +495,32 @@ Signal.upsample(x, factor=2)
 Signal.spectrogram(x, window_size=64, hop_size=32)
 ```
 
+## Special Functions (Phase 6.3)
+
+```python
+from axiompy import Axiom
+
+# Gamma & Beta
+Axiom.gamma(5)            # 24.0
+Axiom.beta(2, 2)          # 0.1666...
+
+# Error functions
+Axiom.erf(1.0)            # 0.8427...
+Axiom.erfc(1.0)           # 0.1573...
+
+# Bessel functions
+Axiom.bessel_j(0, 1.0)    # J0(1) ≈ 0.765
+Axiom.bessel_y(0, 1.0)    # Y0(1) ≈ 0.088
+
+# Legendre polynomials
+Axiom.legendre_p(2, 0.5)  # -0.125
+
+# Combinatorial
+Axiom.factorial(10)       # 3628800
+Axiom.binomial(10, 3)     # 120
+Axiom.double_factorial(7) # 105 (7!! = 7*5*3*1)
+```
+
 ## Tensors (Phase 6.2)
 
 ```python

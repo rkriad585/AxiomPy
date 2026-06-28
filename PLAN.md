@@ -110,12 +110,12 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 - [x] `einsum(subscript, *operands)` — Einstein summation
 
 ### 6.3 Special functions (`special.py`)
-- [ ] `gamma(z)` — Lanczos approximation
-- [ ] `beta(a, b)` — via gamma
-- [ ] `erf(x)`, `erfc(x)` — via continued fraction or Abramowitz & Stegun
-- [ ] `bessel_j(n, x)` / `bessel_y(n, x)` — Bessel functions
-- [ ] `legendre_p(n, x)` — Legendre polynomials
-- [ ] `factorial(n)`, `binomial(n, k)`, `double_factorial(n)`
+- [x] `gamma(z)` — Lanczos approximation
+- [x] `beta(a, b)` — via gamma
+- [x] `erf(x)`, `erfc(x)` — Abramowitz & Stegun approximation
+- [x] `bessel_j(n, x)` / `bessel_y(n, x)` — Bessel functions (series)
+- [x] `legendre_p(n, x)` — Legendre polynomials (Bonnet recurrence)
+- [x] `factorial(n)`, `binomial(n, k)`, `double_factorial(n)`
 
 ### 6.4 Differential equations (`odes.py`)
 - [ ] `solve_ivp(f, y0, t_span, method='rk4', dt=0.01)` — general ODE solver
