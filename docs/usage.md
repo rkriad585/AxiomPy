@@ -520,6 +520,29 @@ Axiom.convex_hull(points)                    # Andrew's monotone chain
 Axiom.closest_pair(points)                   # divide & conquer
 ```
 
+## Cryptography (Phase 6.8)
+
+```python
+from axiompy import Axiom
+
+# RSA key generation & encryption
+pub, priv = Axiom.rsa_keygen(512)
+ct = Axiom.rsa_encrypt(42, pub)
+pt = Axiom.rsa_decrypt(ct, priv)
+
+# ElGamal
+pub, priv = Axiom.elgamal_keygen(128)
+ct = Axiom.elgamal_encrypt(99, pub)
+pt = Axiom.elgamal_decrypt(ct, priv)
+
+# Diffie-Hellman key exchange
+p = 0xFFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F14374FE1356D6D51C245E485B576625E7EC6F44C42E9A63A3621
+pub_a, pub_b, s_a, s_b = Axiom.diffie_hellman_key_exchange(p, 2, 12345, 67890)
+
+# SHA-256 hash
+Axiom.sha256(b"hello")  # "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+```
+
 ## Fractals / Chaos (Phase 6.6)
 
 ```python

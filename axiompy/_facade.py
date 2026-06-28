@@ -13,6 +13,16 @@ from .bayesian import (
 from .bayesian import credible_interval as bayesian_credible_interval
 from .calculus import Calculus
 from .complex_numbers import ComplexMatrix, ComplexNumber, ComplexVector
+from .crypto import (
+    diffie_hellman_key_exchange,
+    elgamal_decrypt,
+    elgamal_encrypt,
+    elgamal_keygen,
+    rsa_decrypt,
+    rsa_encrypt,
+    rsa_keygen,
+    sha256,
+)
 from .electromagnetism import Electromagnetism
 from .fractal import (
     bifurcation_diagram,
@@ -123,6 +133,14 @@ class AxiomPy:
         self.project_point_on_plane = project_point_on_plane
         self.convex_hull = convex_hull
         self.closest_pair = closest_pair
+        self.rsa_keygen = rsa_keygen
+        self.rsa_encrypt = rsa_encrypt
+        self.rsa_decrypt = rsa_decrypt
+        self.elgamal_keygen = elgamal_keygen
+        self.elgamal_encrypt = elgamal_encrypt
+        self.elgamal_decrypt = elgamal_decrypt
+        self.diffie_hellman_key_exchange = diffie_hellman_key_exchange
+        self.sha256 = sha256
         self._setup_logging()
 
     def _setup_logging(self):

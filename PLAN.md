@@ -143,11 +143,11 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 - [x] `closest_pair(points)` — divide & conquer
 
 ### 6.8 Cryptography helpers (`crypto.py`)
-- [ ] `rsa_keygen(bits=1024)` — generate public/private key pair
-- [ ] `rsa_encrypt(message, public_key)` / `rsa_decrypt(ciphertext, private_key)`
-- [ ] `elgamal_keygen()` / `elgamal_encrypt` / `elgamal_decrypt`
-- [ ] `diffie_hellman_key_exchange(p, g, private_a, private_b)`
-- [ ] `sha256(message)` — pure-Python SHA-256
+- [x] `rsa_keygen(bits=1024)` — generate public/private key pair
+- [x] `rsa_encrypt(message, public_key)` / `rsa_decrypt(ciphertext, private_key)`
+- [x] `elgamal_keygen()` / `elgamal_encrypt` / `elgamal_decrypt`
+- [x] `diffie_hellman_key_exchange(p, g, private_a, private_b)`
+- [x] `sha256(message)` — pure-Python SHA-256
 
 ---
 
