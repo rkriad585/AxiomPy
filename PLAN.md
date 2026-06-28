@@ -154,12 +154,12 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 ## Phase 7 — Performance & portability
 
 ### 7.1 Pure Python backend
-- [ ] `PurePythonBackend` implementing `Backend` ABC without numpy
-- [ ] `PurePythonBackend.array` — list-of-lists with `__getitem__` / `__setitem__`
-- [ ] `PurePythonBackend.dot` — O(n³) naive implementation
-- [ ] `PurePythonBackend.solve` — Gaussian elimination
-- [ ] `PurePythonBackend.fft` — naive O(n²) fallback
-- [ ] Test suite runs against both backends via `@pytest.fixture(params=[...])`
+- [x] `PurePythonBackend` implementing `Backend` ABC without numpy
+- [x] `PurePythonBackend.array` — list-of-lists with `__getitem__` / `__setitem__`
+- [x] `PurePythonBackend.dot` — O(n³) naive implementation
+- [x] `PurePythonBackend.solve` — Gaussian elimination
+- [x] `PurePythonBackend.fft` — naive O(n²) fallback
+- [x] Test suite runs against both backends via parametrized fixture
 
 ### 7.2 JAX / CuPy backend
 - [ ] `JaxBackend` — JIT-compiled via `jax.numpy`

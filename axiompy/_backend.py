@@ -278,9 +278,14 @@ class NumpyBackend(Backend):
         return np.linalg.matrix_rank(a)
 
 
+# Import after class definitions to avoid circular imports
+from ._pure_backend import PurePythonBackend  # noqa: E402
+
 _backends: dict[str, type[Backend]] = {
     "numpy": NumpyBackend,
+    "pure": PurePythonBackend,
 }
+
 _current_backend: Backend = NumpyBackend()
 
 

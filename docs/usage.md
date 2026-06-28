@@ -756,8 +756,9 @@ from axiompy import Axiom
 
 Axiom.backend  # NumpyBackend instance
 
-# Switch backends (initially only "numpy" is registered)
-Axiom.set_backend("numpy")
+# Switch backends ("numpy" and "pure" are registered)
+Axiom.set_backend("pure")        # pure-Python (no numpy dependency)
+Axiom.set_backend("numpy")       # NumPy-backed (default)
 ```
 
 Custom backends can be registered:
