@@ -84,11 +84,11 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 - [x] Field superposition helper: `combine_fields(fields)`
 
 ### 5.11 Visualization depth (`visualization.py`)
-- [ ] `plot_histogram(data, bins=10)` — ASCII histogram
-- [ ] `plot_bar(labels, values)` — ASCII bar chart
-- [ ] `plot_scatter(xs, ys)` — ASCII scatter plot
-- [ ] `plot_ascii` → optional title, x/y axis labels
-- [ ] Multi-series support (legend in margin)
+- [x] `plot_histogram(data, bins=10)` — ASCII histogram
+- [x] `plot_bar(labels, values)` — ASCII bar chart
+- [x] `plot_scatter(xs, ys)` — ASCII scatter plot
+- [x] `plot_ascii` → optional title, x/y axis labels
+- [x] Multi-series support (legend in margin)
 
 ---
 

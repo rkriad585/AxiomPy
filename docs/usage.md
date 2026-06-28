@@ -299,7 +299,22 @@ y = [v**2 for v in x]
 Axiom.viz.plot_ascii(x, y)
 ```
 
-Optional keyword arguments: `width` (default 60), `height` (default 15).
+Optional keyword arguments: `width` (default 60), `height` (default 15),
+`title` (str), `xlabel` (str), `ylabel` (str), `extra_series` (list of
+`(x_vals, y_vals, label)` tuples for multi-series with legend).
+
+### Advanced visualization (Phase 5.11)
+
+```python
+# Histogram (using numpy.histogram internally)
+Axiom.viz.plot_histogram(data, bins=10, title="Histogram")
+
+# Horizontal bar chart
+Axiom.viz.plot_bar(["A", "B", "C"], [30, 55, 20], title="Bar chart")
+
+# Compact scatter plot (thin wrapper around plot_ascii)
+Axiom.viz.plot_scatter(x, y, title="Scatter")
+```
 
 ### ASCII field plot
 
