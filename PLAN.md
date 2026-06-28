@@ -274,6 +274,82 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 
 ---
 
+---
+
+## Phase 10 — Beginner-friendly expansion
+
+### 10.1 Expand built-in constants
+- [ ] Add ``R`` (gas constant 8.314462618)
+- [ ] Add ``E_CHARGE`` (elementary charge 1.602176634e-19)
+- [ ] Add ``HBAR`` (reduced Planck 1.054571817e-34)
+- [ ] Add ``M_E`` (electron mass 9.1093837015e-31)
+- [ ] Add ``M_P`` (proton mass 1.67262192369e-27)
+- [ ] Add ``M_N`` (neutron mass 1.67492749804e-27)
+- [ ] Add ``M_MU`` (muon mass 1.883531627e-28)
+- [ ] Add ``ALPHA`` (fine-structure constant 7.2973525693e-3)
+- [ ] Add ``RYDBERG`` (Rydberg constant 10973731.56816)
+- [ ] Add ``STEFAN_BOLTZMANN`` (σ 5.670374419e-8)
+- [ ] Add ``WIEN`` (Wien displacement 2.897771955e-3)
+- [ ] Add ``E_CHARGE`` (electron charge)
+- [ ] Add astronomical constants: ``AU``, ``PARSEC``, ``SOLAR_MASS``, ``EARTH_MASS``, ``EARTH_RADIUS``, ``LIGHT_YEAR``
+- [ ] Add time constants: ``MINUTE``, ``HOUR``, ``DAY``, ``YEAR`` (in seconds)
+- [ ] Add ``list_by_category()`` — group constants by category
+- [ ] Add ``find(name)`` — search constants by name substring
+
+### 10.2 Async caching with real ``async`` support
+- [ ] ``Axiom.cache.put_async(key, value, ttl=None)`` — coroutine
+- [ ] ``Axiom.cache.get_async(key)`` — coroutine
+- [ ] ``@Axiom.cache.async_memoize(ttl=...)`` — decorator for ``async def`` functions
+- [ ] Cache statistics: ``Axiom.cache.hits``, ``Axiom.cache.misses``, ``Axiom.cache.hit_ratio``
+- [ ] ``Axiom.cache.stats()`` — return dict of all stats
+- [ ] ``Axiom.cache.save(path)`` / ``Axiom.cache.load(path)`` — persist cache to disk
+- [ ] ``Axiom.cache.info()`` — print formatted stats
+
+### 10.3 CLI extensions
+- [ ] ``axiompy eval "2 + 3 * 4"`` — evaluate math expression (uses BasicMath PEMDAS)
+- [ ] ``axiompy factors 84`` — show prime factorization
+- [ ] ``axiompy constants [search]`` — list / search built-in constants
+- [ ] ``axiompy convert 42`` — show number in binary, octal, hex, roman, words
+- [ ] ``axiompy stats`` — show cache + system stats
+- [ ] ``axiompy help [topic]`` — detailed guidance (``math``, ``cache``, ``io``, etc.)
+
+### 10.4 More magical functions
+- [ ] ``Axiom.magic.sieve_of_eratosthenes(n)`` — classic prime sieve
+- [ ] ``Axiom.magic.kaprekar_routine(n)`` — Kaprekar's routine (6174)
+- [ ] ``Axiom.magic.look_and_say(n)`` — look-and-say sequence
+- [ ] ``Axiom.magic.ulam_spiral(n)`` — Ulam spiral coordinates
+- [ ] ``Axiom.magic.narcissistic_numbers(limit)`` — all Armstrong numbers
+- [ ] ``Axiom.magic.smith_numbers(limit)`` — Smith numbers
+- [ ] ``Axiom.magic.emirp_numbers(limit)`` — primes that stay prime reversed
+- [ ] ``Axiom.magic.goldbach_conjecture(n)`` — Goldbach partition
+- [ ] ``Axiom.magic.twin_primes(limit)`` — twin prime pairs
+- [ ] ``Axiom.magic.circular_primes(limit)`` — circular primes
+- [ ] ``Axiom.magic.number_to_words(n)`` — spell out number in English
+- [ ] ``Axiom.magic.roman_numeral(n)`` — convert to Roman numerals
+- [ ] ``Axiom.magic.factorial_digit_sum(n)`` — sum of digits of n!
+- [ ] ``Axiom.magic.fibonacci_spiral(n)`` — first n Fibonacci numbers
+- [ ] ``Axiom.magic.automorphic_numbers(limit)`` — squares ending with itself
+- [ ] ``Axiom.magic.harshad_numbers(limit)`` — divisible by digit sum
+
+### 10.5 Documentation overhaul
+- [ ] Rewrite ``docs/basic_math.md`` — beginner tone, more examples, no jargon
+- [ ] Rewrite ``docs/constants.md`` — with categories, search tips, example usage
+- [ ] Rewrite ``docs/io.md`` — include error handling, practical walkthrough
+- [ ] Rewrite ``docs/cache.md`` — add async section, stats, persistence
+- [ ] Rewrite ``docs/magic.md`` — add all new magical functions with examples
+- [ ] New ``docs/cli.md`` — complete CLI reference with examples
+- [ ] New ``docs/tutorial.md`` — step-by-step beginner tutorial
+- [ ] Update ``docs/usage.md`` — add Phase 10 modules
+
+### 10.6 Inline docstring refresh
+- [ ] All ``_constants.py`` docstrings — add units, typical use, source references
+- [ ] All ``_cache.py`` docstrings — beginner-friendly descriptions with examples
+- [ ] All ``cli.py`` docstrings — explain each command clearly
+- [ ] All ``_magic.py`` docstrings — full examples, parameter explanations
+- [ ] All ``_basic_math.py`` docstrings — plain English, no math jargon
+
+---
+
 ## How to pick what to build
 
 1. **Phase 5 first** — deepen existing modules; users already import them.
