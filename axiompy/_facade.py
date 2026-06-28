@@ -4,6 +4,7 @@ from ._backend import get_backend, register_backend, set_backend
 from ._config import AxiomConfig
 from .autodiff import AutoDiff
 from .calculus import Calculus
+from .complex_numbers import ComplexMatrix, ComplexNumber, ComplexVector
 from .electromagnetism import Electromagnetism
 from .graph import Graph, GraphAnalysis
 from .linalg import LinearAlgebra
@@ -44,6 +45,9 @@ class AxiomPy:
         self.Matrix = Matrix
         self.Graph = Graph
         self.Polynomial = Polynomial
+        self.ComplexNumber = ComplexNumber
+        self.ComplexVector = ComplexVector
+        self.ComplexMatrix = ComplexMatrix
         self._setup_logging()
 
     def _setup_logging(self):

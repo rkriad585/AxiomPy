@@ -495,6 +495,34 @@ Signal.upsample(x, factor=2)
 Signal.spectrogram(x, window_size=64, hop_size=32)
 ```
 
+## Complex Numbers (Phase 6.1)
+
+```python
+from axiompy import Axiom
+
+# Create complex numbers
+z = Axiom.ComplexNumber(3, 4)
+z_polar = Axiom.ComplexNumber.from_polar(2.0, math.pi / 3)
+
+# Properties and methods
+z.real          # 3.0
+z.imag          # 4.0
+z.conjugate     # ComplexNumber(3, -4)
+z.modulus()     # 5.0
+z.argument()    # 0.9273 rad
+z.power(2)      # De Moivre power
+
+# Roots of unity
+Axiom.ComplexNumber.roots_of_unity(5)  # 5 roots
+
+# CFFT alias (delegates to Signal.fft)
+Axiom.ComplexNumber.cfft([1, 0, -1, 0])
+
+# Complex containers
+v = Axiom.ComplexVector([1+2j, 3+4j])
+m = Axiom.ComplexMatrix([[1j, 2j], [3j, 4j]])
+```
+
 ## Error handling
 
 All custom exceptions inherit from `AxiomError` (defined in `_base.py`):

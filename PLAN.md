@@ -95,11 +95,11 @@ All 11 domain modules are complete with tests, docs, linting, and CI. See `CHANG
 ## Phase 6 — New domains
 
 ### 6.1 Complex numbers (`complex_numbers.py`)
-- [ ] `Complex` class wrapping Python `complex` with polar/rect conversion
-- [ ] `conjugate()`, `modulus()`, `argument()`, `power(n)`
-- [ ] `roots_of_unity(n)` — static factory
-- [ ] `ComplexMatrix` / `ComplexVector` convenience subclasses
-- [ ] `fft` → `cfft` alias
+- [x] `ComplexNumber` class wrapping Python `complex` with polar/rect conversion
+- [x] `conjugate`, `modulus()`, `argument()`, `power(n)`
+- [x] `roots_of_unity(n)` — static factory
+- [x] `ComplexMatrix` / `ComplexVector` convenience subclasses
+- [x] `fft` → `cfft` alias
 
 ### 6.2 Tensors (`tensor.py`)
 - [ ] `Tensor` class — n-dimensional array wrapper
